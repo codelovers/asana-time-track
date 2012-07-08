@@ -1,0 +1,41 @@
+@import "boilerplate";
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "compass/css3";
+@import "compass/utilities/general/clearfix";
+
+::-moz-selection { background: gray; color: #fff; text-shadow: none; }
+::selection { background: gray; color: #fff; text-shadow: none; }
+
+/* 
+  ------------------------------------------------------------------------------
+    COLORS
+  ------------------------------------------------------------------------------
+*/
+
+$cyan: #00adef;
+$darkCyan: #0082e6;
+$grey: #999;
+$paleGrey: #afafaf;
+$darkGrey: #666;
+$anthracite: #333;
+$midnightBlue: #003366;
+$textColor: #ccc;
+
+$clGreen: #bdca07;
+
+/* 
+  ------------------------------------------------------------------------------
+    COMMON STYLES
+  ------------------------------------------------------------------------------
+/* Gernal */
+
+*{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
+    padding-top: 60px;
+}
