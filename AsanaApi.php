@@ -4,7 +4,7 @@
  * some helper functions e.g. getWorkspaces, getProjects,...
  *
  * @author codelovers
- * @website codelovers.de
+ * @author codelovers.de
  * @version 1.0 (2012_07_07)
  * @package asana_track_time
  */
