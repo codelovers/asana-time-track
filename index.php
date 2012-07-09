@@ -11,36 +11,59 @@
 
 require_once("AsanaApi.php");
 
-// get api key
+// get data
 $apiKey = $_GET['apiKey'];
+$workspaceId = $_GET['workspaceId'];
+$projectId = $_GET['projectId'];
 
 // initalize
 $asana = new AsanaApi($apiKey); 
 $result = $asana->getWorkspaces();
-//$resultP = $asana->getProjects(541558489761);
+
 // check if everything works fine
 if($asana->getResponseCode() == '200' && $result != '' ){
 	    
-	$resultJson = json_decode($result);
     
-	// $resultJson contains an object in json with all projects
-	foreach($resultJson->data as $workspace){
-		echo '<b>' . $workspace->id.' - '. $workspace->name .'</b><br>';
+    // workspaces
+    ////////////////////////////
+    if($workspaceId == '' && $projectId == ''){
         
-        $result = $asana->getProjects($workspace->id);
+       echo '<b>Workspaces:</b><br />';
+
+    	$resultJson = json_decode($result);
+    	// $resultJson contains an object in json with all projects
+    	foreach($resultJson->data as $workspace){
+    		echo '- <a href="?apiKey='.$apiKey.'&workspaceId=' . $workspace->id.'" target="_self">'. $workspace->name .'</a><br>';
+    	}
+    }
+
+
+    // projects
+    ////////////////////////////
+    if($workspaceId != ''){
+           
+       echo '<b>Projects:</b><br />';
+       
+        $result = $asana->getProjects($workspaceId);
         $result = json_decode($result);
         foreach($result->data as $project){
-            echo '####<b>' . $project->id . ' - ' . $project->name . '</b><br />';
-            
-            $result = $asana->getTasks($workspace->id, $project->id);
-            $result = json_decode($result);
-            foreach($result->data as $task){
-                echo '____' . $task->name . '<br />';
-            }
-            
+            echo '- <a href="?apiKey='. $apiKey . '&projectId=' . $project->id . '" target="_self">' . $project->name . '</a><br />';
+        }
+    }
+    
+    // tasks
+    ////////////////////////////
+    if($projectId != ''){
+          
+        echo '<b>Tasks:</b><br />';
+        
+        $result = $asana->getTasks($projectId);
+        $result = json_decode($result);
+        foreach($result->data as $task){
+            echo '- ' . $task->name . '<br />';
         }
         
-	}
+    }
 
 } else {
     echo '<p>ERROR: Something went wrong! Maybe your asana api key does not fit.</p>';

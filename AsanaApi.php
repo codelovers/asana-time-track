@@ -59,7 +59,7 @@ class AsanaApi {
         return $this->apiRequest($this->workspaceUri.'/'.$workspaceId.'/projects');
     }
     
-    public function getTasks($workspaceId, $projectId){
+    public function getTasks($projectId){
         return $this->apiRequest($this->projectUri.'/'.$projectId.'/tasks');
     }
 
@@ -82,6 +82,12 @@ class AsanaApi {
         curl_setopt($curl, CURLOPT_USERPWD, $this->apiKey);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // don´t print json-string
 
+        //    
+        if($method == POST_METHOD){
+            echo 'jap';
+            curl_setopt($curl, CURLOPT_POST, true);
+        }
+        
         $data = curl_exec($curl);
         
         // set responsCode, needed in index.php
