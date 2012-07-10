@@ -6,7 +6,18 @@ $(function(){
     var apiKeyInput = apiKeyForm.find('#api-key');
     var workspaceContainer = apiKeyForm.siblings('#workspace-container');
     var apiKeyImg = apiKeyForm.find('.ajax_img');
-    var workspaceLoader = $('.container').children('.ajax_img');
+    var workspaceLoader = $('.container').children('#loader-wrapper');
+    var loadingTextWrapper = $('.loading_text');
+    // some loading texts
+    var loadingText = new Array('One apple a day keeps the doctor away...', 
+                                'If you can dream it, you can do it. Walt Disney (1901-1966)...',
+                                'Before you can score, you must first have a goal...',
+                                'Our team is well balanced. We have problems everywhere. Tommy Prothro (1941)...',
+                                'The prize of greatness is responsibility. Winston Churchill (1874-1965)...',
+                                'Nothing is paticularily hard if you divide it into small jobs. Henry Ford (1863-1947)...');
+                                
+    var loadingTextLength = loadingText.length;
+    
     $('#start-modal').modal();
     
     if(apiKeyCookie != null) {
@@ -75,6 +86,7 @@ $(function(){
         $('#start-modal').modal('hide');
         $('.workspace_caption').show().attr('data-workspace-id', workspaceId).html(caption);
         projectsAjaxCall();
+        randomLoadingText();
         workspaceLoader.show();    });
     
     function projectsAjaxCall() {
@@ -96,6 +108,7 @@ $(function(){
     
     $('.nav-tabs').on('click', '.nav-tabs > li:not(.active)', function(){        var projectId = $(this).data('project-id');
         $('#tab1').hide();
+        randomLoadingText();
         workspaceLoader.show();
         tasksAjaxCall(projectId);    });
     
@@ -114,4 +127,10 @@ $(function(){
             }
         });
     }
+    
+    function randomLoadingText(){
+        var randomNumber = Math.floor((Math.random()*loadingTextLength));
+        loadingTextWrapper.html(loadingText[randomNumber]);
+    }
+    
 });

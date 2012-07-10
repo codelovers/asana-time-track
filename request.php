@@ -35,7 +35,8 @@ if($asana->getResponseCode() == '200' && $result != '' ){
     	// $resultJson contains an object in json with all projects
     	foreach($resultJson->data as $workspace){
     		//echo '- <a href="?apiKey='.$apiKey.'&workspaceId=' . $workspace->id.'" target="_self">'. $workspace->name .'</a><br>';
-            echo '<div class="span4 well workspace" data-workspace-id="' . $workspace->id .'"><h3>' . $workspace->name .'</h3><p>Beschreibungs TEXT</p></div>';
+            if($workspace->name == 'Personal Projects') continue;
+            echo '<div class="span4 well workspace" data-workspace-id="' . $workspace->id .'"><h3>' . $workspace->name .'</h3></div>';
     	}
     }
 
@@ -69,7 +70,12 @@ if($asana->getResponseCode() == '200' && $result != '' ){
 
              $value = $asana->getGuessAndWorkedTime($task->name);
              $taskState = $asana->getOneTask($task->id);
-
+             $taskName = $value['taskName'];
+             $guessHours = $value['guessHours'];
+             $guessMinutes = $value['guessMinutes'];
+             $workedHours = $value['workedHours'];
+             $workedMinutes = $value['workedMinutes'];
+             
              // task must be active and your own   
              if($taskState['completed'] || $taskState['assignee'] != $userId) {
                 continue;
@@ -77,9 +83,9 @@ if($asana->getResponseCode() == '200' && $result != '' ){
                 //echo '- <a href="?apiKey='. $apiKey . '&projectId=' . $projectId . '&updateId=' . $task->id . '" target="_self" data-guess-hours="'. $value['guessHours'] .'" data-guess-minutes="'. $value['guessMinutes'] .'" data-worked-hours="'. $value['workedHours'] .'" data-worked-minutes="'. $value['workedMinutes'] .'">' . $task->name . '</a><br />';
                 
                 echo '<tr data-task-id="' . $task->id . '">'
-                    .'<td>'. $task->name  .'</td>'
-                    .'<td data-guess-hours="'. $value['guessHours'] .'" data-guess-minutes="'. $value['guessMinutes'] .'"></td>'
-                    .'<td data-worked-hours="'. $value['workedHours'] .'" data-worked-minutes="'. $value['workedMinutes'] .'"></td>'
+                    .'<td>'. $taskName  .'</td>'
+                    .'<td data-guess-hours="'. $guessHours .'" data-guess-minutes="'. $guessMinutes .'">'. $guessHours .'h '. $guessMinutes .'m</td>'
+                    .'<td data-worked-hours="'. $workedHours .'" data-worked-minutes="'. $workedMinutes .'">'. $workedHours .'h '. $workedMinutes .'m</td>'
                     .'<td><div class="progress progress-success progress-striped active">
                             <div class="bar" style="width: 0%;"></div>
                         </div>

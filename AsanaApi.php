@@ -111,7 +111,8 @@ class AsanaApi {
         $workedTimeHours = $explodeString[0];
         $workedTimeMinutes = trim(substr($explodeString[1], 0, -1));
         
-        $array = array ( 'guessHours' => $guessTimeHours,
+        $array = array ( 'taskName' => $data[0],
+                         'guessHours' => $guessTimeHours,
                          'guessMinutes' => $guessTimeMinutes,
                          'workedHours' => $workedTimeHours,
                          'workedMinutes' => $workedTimeMinutes

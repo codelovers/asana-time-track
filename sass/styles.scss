@@ -37,10 +37,19 @@ $clGreen: #bdca07;
         margin: 0 0 30px 0;
         float: left;
     }
-    .ajax_img {
+        
+    #loader-wrapper{
         display: none;
         margin: 0.9em 0 0 1em;
+    
+        .ajax_img, span {
+            margin-left:1em;
+        }
+    
+        
+        
     }
+    
 }
 
 .att_track_table tbody tr {
@@ -69,9 +78,12 @@ $clGreen: #bdca07;
         .workspace {
             text-align: center;
             cursor: pointer;
+            overflow:hidden;
+            
             &:hover {
                 @include box-shadow(rgba(0, 0, 0, 0.1) 0 1px 20px inset);
             }
+
         }    }
 }
 
