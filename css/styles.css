@@ -463,6 +463,11 @@ textarea[contenteditable] {
     page-break-after: avoid;
   }
 }
+/* line 1, ../sass/_defaults.scss */
+body {
+  padding-top: 60px;
+}
+
 /*
  * Bootstrap v2.0.4
  *
@@ -7400,14 +7405,14 @@ a.badge:hover {
     overflow: visible !important;
   }
 }
-/* line 7, ../sass/styles.scss */
+/* line 8, ../sass/styles.scss */
 ::-moz-selection {
   background: gray;
   color: #fff;
   text-shadow: none;
 }
 
-/* line 8, ../sass/styles.scss */
+/* line 9, ../sass/styles.scss */
 ::selection {
   background: gray;
   color: #fff;
@@ -7424,14 +7429,47 @@ a.badge:hover {
     COMMON STYLES
   ------------------------------------------------------------------------------
 /* Gernal */
-/* line 33, ../sass/styles.scss */
-* {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+/* line 35, ../sass/styles.scss */
+.workspace_caption {
+  margin: 0 0 30px 0;
 }
 
-/* line 39, ../sass/styles.scss */
-body {
-  padding-top: 60px;
+/* line 40, ../sass/styles.scss */
+.att_track_table tbody tr > td {
+  vertical-align: middle;
+}
+/* line 43, ../sass/styles.scss */
+.att_track_table tbody tr .progress {
+  margin-bottom: 0;
+}
+
+/* line 49, ../sass/styles.scss */
+.my_timer .time {
+  line-height: 28px;
+}
+/* line 52, ../sass/styles.scss */
+.my_timer > * {
+  float: left;
+  margin: 0 2em 0 0;
+}
+
+/* line 59, ../sass/styles.scss */
+#start-modal #api-key-form .controls {
+  margin-left: 0px;
+}
+/* line 62, ../sass/styles.scss */
+#start-modal .ajax_img {
+  display: none;
+}
+/* line 65, ../sass/styles.scss */
+#start-modal #api-key-edit, #start-modal #api-key-delete {
+  display: none;
+}
+/* line 69, ../sass/styles.scss */
+#start-modal #workspace-container {
+  display: none;
+}
+/* line 71, ../sass/styles.scss */
+#start-modal #workspace-container > .workspace {
+  text-align: center;
 }

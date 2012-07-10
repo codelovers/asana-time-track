@@ -37,31 +37,150 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a data-toggle="modal" href="#settings-modal" >Settings</a></li>
+              <li><a href="#contact">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
+    <div class="modal fade" id="start-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Insert ASANA-API-KEY</h3>      </div>
+      <div class="modal-body">
+        <form id="api-key-form" class="well form-horizontal" validate>
+          <div class="control-group">
+            <div class="controls">
+              <input type="text" id="api-key" required placeholder="Enter API-KEY here">
+              <span class="help-inline">
+                  <img class="ajax_img" src="img/ajax-loader.gif"/>
+                  <button id="api-key-edit" class="btn btn-primary">
+                      <i class="icon-edit icon-white"></i>
+                      Edit
+                  </button>
+                  <button id="api-key-delete" class="btn btn-danger">
+                      <i class="icon-trash icon-white"></i>
+                      Delete
+                  </button>
+             </span>
+            </div>
+          </div>
+          <button id="start-send" type="submit" class="btn">Submit</button>
+        </form>
+        <div id="workspace-container" class="row-fluid">
+            <div class="span4 well workspace">
+                <h3>Workspace A</h3>
+                <p>Beschreibungs TEXT</p>
+            </div>
+            <div class="span4 well workspace">
+                <h3>Workspace B</h3>
+                <p>Beschreibungs TEXT</p>
+            </div>
+            <div class="span4 well workspace">
+                <h3>Workspace C</h3>
+                <p>Beschreibungs TEXT</p>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+      </div>
+    </div>
+    
+    <div class="modal hide fade" id="settings-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Settings</h3>
+      </div>
+      <div class="modal-body">
+        <form class="well">
+          <label>Label name</label>
+          <input type="text" class="span3" placeholder="Type something…">
+          <button type="submit" class="btn">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <button href="#" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    
     <div class="container">
 
-      <h1>Bootstrap starter template</h1>
-      <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+    <h1 class="workspace_caption">Workspace A</h1>
     <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-        <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+        <li class="active"><a href="#tab1" data-toggle="tab">Project a</a></li>
+        <li><a href="#tab2" data-toggle="tab">Project b</a></li>
+        <li><a href="#tab3" data-toggle="tab">Project c</a></li>
+        <li><a href="#tab4" data-toggle="tab">Project d</a></li>
+        <li><a href="#tab5" data-toggle="tab">Project f</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab1">
-          <p>I'm in Section 1.</p>
-            <button class="btn btn-success" href="#"><i class="icon-white icon-play"></i> &nbsp; Start</button>
-            <button class="btn btn-danger" href="#"><i class="icon-white icon-stop"></i> &nbsp; Stop</button>
-        </div>
-        <div class="tab-pane" id="tab2">
-          <p>Howdy, I'm in Section 2.</p>
+          <table class="att_track_table table table-bordered">
+            <thead>
+              <tr>
+                <th>Taskname</th>
+                <th>Guesed Time</th>
+                <th>Worked Time</th>
+                <th>Progress</th>
+                <th>Timer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Task a</td>
+                <td>5h 4m</td>
+                <td>30m</td>
+                <td>
+                    <div class="progress progress-success progress-striped active">
+                        <div class="bar" style="width: 40%;"></div>
+                    </div>
+                </td>
+                <td class="my_timer">
+                    <div class="time">1h 30min</div>
+                    <button class="btn btn-danger" type="submit">
+                        <i class="icon-white icon-stop"></i> &nbsp; Stop
+                    </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Task a</td>
+                <td>5h 4m</td>
+                <td>30m</td>
+                <td>
+                    <div class="progress progress-success progress-striped">
+                        <div class="bar" style="width: 40%;"></div>
+                    </div>
+                </td>
+                <td class="my_timer">
+                    <div class="time">1h 30min</div>
+                    <button class="btn btn-success" type="submit">
+                        <i class="icon-white icon-play"></i> &nbsp; Start
+                    </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Task a</td>
+                <td>5h 4m</td>
+                <td>30m</td>
+                <td>
+                    <div class="progress progress-success progress-striped">
+                        <div class="bar" style="width: 40%;"></div>
+                    </div>
+                </td>
+                <td class="my_timer">
+                    <div class="time">1h 30min</div>
+                    <button class="btn btn-success" type="submit">
+                        <i class="icon-white icon-play"></i> &nbsp; Start
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -70,19 +189,21 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap-transition.js"></script>
-    <script src="js/bootstrap-alert.js"></script>
-    <script src="js/bootstrap-modal.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
-    <script src="js/bootstrap-scrollspy.js"></script>
-    <script src="js/bootstrap-tab.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap-popover.js"></script>
-    <script src="js/bootstrap-button.js"></script>
-    <script src="js/bootstrap-collapse.js"></script>
-    <script src="js/bootstrap-carousel.js"></script>
-    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/js-libs/jquery/jquery.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-transition.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-alert.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-modal.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-dropdown.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-scrollspy.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-tab.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-tooltip.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-popover.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-button.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-collapse.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-carousel.js"></script>
+    <script src="js/js-libs/bootstrap/bootstrap-typeahead.js"></script>
+    <script src="js/js-libs/jquery/jquery.cookie.js"></script>
+    <script src="js/scripts.js"></script>
 
   </body>
 </html>

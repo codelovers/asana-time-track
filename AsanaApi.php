@@ -52,7 +52,7 @@ class AsanaApi {
     } 
     
     public function getWorkspaces(){
-        return $this->apiRequest($this->workspaceUri);        
+        return $this->apiRequest($this->workspaceUri);
     }
     
     public function getProjects($workspaceId){
