@@ -71,10 +71,10 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              $value = $asana->getGuessAndWorkedTime($task->name);
              $taskState = $asana->getOneTask($task->id);
              $taskName = $value['taskName'];
-             $guessHours = $value['guessHours'];
-             $guessMinutes = $value['guessMinutes'];
-             $workedHours = $value['workedHours'];
-             $workedMinutes = $value['workedMinutes'];
+             $guessHours = (!empty($value['guessHours'])) ? $value['guessHours'].'h' : '0h';
+             $guessMinutes = (!empty($value['guessMinutes'])) ? $value['guessMinutes'].'m' : '0m';
+             $workedHours = (!empty($value['workedHours'])) ? $value['workedHours'].'h' : '0h';
+             $workedMinutes = (!empty($value['workedMinutes'])) ? $value['workedMinutes'].'m' : '0m';
              
              // task must be active and your own   
              if($taskState['completed'] || $taskState['assignee'] != $userId) {
@@ -84,8 +84,8 @@ if($asana->getResponseCode() == '200' && $result != '' ){
                 
                 echo '<tr data-task-id="' . $task->id . '">'
                     .'<td>'. $taskName  .'</td>'
-                    .'<td data-guess-hours="'. $guessHours .'" data-guess-minutes="'. $guessMinutes .'">'. $guessHours .'h '. $guessMinutes .'m</td>'
-                    .'<td data-worked-hours="'. $workedHours .'" data-worked-minutes="'. $workedMinutes .'">'. $workedHours .'h '. $workedMinutes .'m</td>'
+                    .'<td data-guess-hours="'. $guessHours .'" data-guess-minutes="'. $guessMinutes .'">'. $guessHours .' '. $guessMinutes .'</td>'
+                    .'<td data-worked-hours="'. $workedHours .'" data-worked-minutes="'. $workedMinutes .'">'. $workedHours .' '. $workedMinutes .'</td>'
                     .'<td><div class="progress progress-success progress-striped active">
                             <div class="bar" style="width: 0%;"></div>
                         </div>
