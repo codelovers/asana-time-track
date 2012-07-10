@@ -31,9 +31,16 @@ $clGreen: #bdca07;
   ------------------------------------------------------------------------------
 /* Gernal */
 
-
-.workspace_caption {
-    margin: 0 0 30px 0;
+.container {
+    .workspace_caption {
+        display: none;
+        margin: 0 0 30px 0;
+        float: left;
+    }
+    .ajax_img {
+        display: none;
+        margin: 0.9em 0 0 1em;
+    }
 }
 
 .att_track_table tbody tr {
@@ -45,15 +52,6 @@ $clGreen: #bdca07;
     }
 }
 
-.my_timer {
-    .time {
-        line-height: 28px;
-    }
-    & > *{
-        float: left;
-        margin: 0 2em 0 0;
-    }
-}
 
 #start-modal {
     #api-key-form .controls{
@@ -62,14 +60,35 @@ $clGreen: #bdca07;
     .ajax_img {
         display: none;
     }
-    #api-key-edit, #api-key-delete {
+    #api-key-edit, #api-key-delete, #api-key-refresh {
         display: none;
     }
     
     #workspace-container {
         display: none;
-        & > .workspace {
+        .workspace {
             text-align: center;
-        }
+            cursor: pointer;
+            &:hover {
+                @include box-shadow(rgba(0, 0, 0, 0.1) 0 1px 20px inset);
+            }
+        }    }
+}
+
+#track-table {
+    clear: both;
+    display: none;
+    .my_timer {
+        .time {
+            line-height: 28px;
+        }
+        & > *{
+            float: left;
+            margin: 0 2em 0 0;
+        }
     }
+    .tab-pane  {
+        display: none;
+    }
+
 }

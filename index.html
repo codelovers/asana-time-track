@@ -38,6 +38,7 @@
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
               <li><a data-toggle="modal" href="#settings-modal" >Settings</a></li>
+              <li><a data-toggle="modal" href="#start-modal">Change Workspace </a></li>
               <li><a href="#contact">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -47,15 +48,14 @@
 
     <div class="modal fade" id="start-modal">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Insert ASANA-API-KEY</h3>      </div>
+        <button type="button" class="close" data-dismiss="modal">×</button>        <h3>Insert ASANA-API-KEY</h3>
+      </div>
       <div class="modal-body">
         <form id="api-key-form" class="well form-horizontal" validate>
           <div class="control-group">
             <div class="controls">
               <input type="text" id="api-key" required placeholder="Enter API-KEY here">
               <span class="help-inline">
-                  <img class="ajax_img" src="img/ajax-loader.gif"/>
                   <button id="api-key-edit" class="btn btn-primary">
                       <i class="icon-edit icon-white"></i>
                       Edit
@@ -64,24 +64,17 @@
                       <i class="icon-trash icon-white"></i>
                       Delete
                   </button>
+                  <button id="api-key-refresh" class="btn">
+                      <i class="icon-refresh"></i>
+                      Refresh
+                  </button>
+                  <img class="ajax_img" src="img/ajax-loader.gif"/>
              </span>
             </div>
           </div>
           <button id="start-send" type="submit" class="btn">Submit</button>
         </form>
         <div id="workspace-container" class="row-fluid">
-            <div class="span4 well workspace">
-                <h3>Workspace A</h3>
-                <p>Beschreibungs TEXT</p>
-            </div>
-            <div class="span4 well workspace">
-                <h3>Workspace B</h3>
-                <p>Beschreibungs TEXT</p>
-            </div>
-            <div class="span4 well workspace">
-                <h3>Workspace C</h3>
-                <p>Beschreibungs TEXT</p>
-            </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -109,14 +102,10 @@
     
     <div class="container">
 
-    <h1 class="workspace_caption">Workspace A</h1>
-    <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
+    <h1 class="workspace_caption">Workspace</h1> <img class="ajax_img" src="img/ajax-loader.gif"/>
+    <div id="track-table" class="tabbable tabs-left">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Project a</a></li>
-        <li><a href="#tab2" data-toggle="tab">Project b</a></li>
-        <li><a href="#tab3" data-toggle="tab">Project c</a></li>
-        <li><a href="#tab4" data-toggle="tab">Project d</a></li>
-        <li><a href="#tab5" data-toggle="tab">Project f</a></li>
+        <!-- filled with content from server (ajax) -->
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab1">
@@ -131,54 +120,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Task a</td>
-                <td>5h 4m</td>
-                <td>30m</td>
-                <td>
-                    <div class="progress progress-success progress-striped active">
-                        <div class="bar" style="width: 40%;"></div>
-                    </div>
-                </td>
-                <td class="my_timer">
-                    <div class="time">1h 30min</div>
-                    <button class="btn btn-danger" type="submit">
-                        <i class="icon-white icon-stop"></i> &nbsp; Stop
-                    </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Task a</td>
-                <td>5h 4m</td>
-                <td>30m</td>
-                <td>
-                    <div class="progress progress-success progress-striped">
-                        <div class="bar" style="width: 40%;"></div>
-                    </div>
-                </td>
-                <td class="my_timer">
-                    <div class="time">1h 30min</div>
-                    <button class="btn btn-success" type="submit">
-                        <i class="icon-white icon-play"></i> &nbsp; Start
-                    </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Task a</td>
-                <td>5h 4m</td>
-                <td>30m</td>
-                <td>
-                    <div class="progress progress-success progress-striped">
-                        <div class="bar" style="width: 40%;"></div>
-                    </div>
-                </td>
-                <td class="my_timer">
-                    <div class="time">1h 30min</div>
-                    <button class="btn btn-success" type="submit">
-                        <i class="icon-white icon-play"></i> &nbsp; Start
-                    </button>
-                </td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
