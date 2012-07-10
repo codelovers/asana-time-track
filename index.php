@@ -15,15 +15,16 @@ require_once("AsanaApi.php");
 $apiKey = $_GET['apiKey'];
 $workspaceId = $_GET['workspaceId'];
 $projectId = $_GET['projectId'];
+$updateId = $_GET['updateId'];
 
 // initalize
 $asana = new AsanaApi($apiKey); 
 $result = $asana->getWorkspaces();
+$userId = $asana->getUserId(); // should be saved in cookie
 
 // check if everything works fine
 if($asana->getResponseCode() == '200' && $result != '' ){
 	    
-    
     // workspaces
     ////////////////////////////
     if($workspaceId == '' && $projectId == ''){
@@ -40,14 +41,14 @@ if($asana->getResponseCode() == '200' && $result != '' ){
 
     // projects
     ////////////////////////////
-    if($workspaceId != ''){
+    if($workspaceId != '' && $projectId == ''){
            
        echo '<b>Projects:</b><br />';
        
         $result = $asana->getProjects($workspaceId);
         $result = json_decode($result);
         foreach($result->data as $project){
-            echo '- <a href="?apiKey='. $apiKey . '&projectId=' . $project->id . '" target="_self">' . $project->name . '</a><br />';
+            echo '- <a href="?apiKey='. $apiKey . '&workspaceId=' . $workspaceId.'&projectId=' . $project->id . '" target="_self">' . $project->name . '</a><br />';
         }
     }
     
@@ -57,13 +58,30 @@ if($asana->getResponseCode() == '200' && $result != '' ){
           
         echo '<b>Tasks:</b><br />';
         
-        $result = $asana->getTasks($projectId);
+        $result = $asana->getTasks($projectId, $workspaceId);
         $result = json_decode($result);
+
         foreach($result->data as $task){
-            echo '- ' . $task->name . '<br />';
-        }
+
+             $value = $asana->getGuessAndWorkedTime($task->name);
+             $taskState = $asana->getOneTask($task->id);
+
+             // task must be active and your own   
+             if($taskState['completed'] || $taskState['assignee'] != $userId) {
+                continue;
+             } else {
+                echo '- <a href="?apiKey='. $apiKey . '&projectId=' . $projectId . '&updateId=' . $task->id . '" target="_self" data-guess-hours="'. $value['guessHours'] .'" data-guess-minutes="'. $value['guessMinutes'] .'" data-worked-hours="'. $value['workedHours'] .'" data-worked-minutes="'. $value['workedMinutes'] .'">' . $task->name . '</a><br />';
+             }
+         }
         
     }
+    
+    // update
+    ////////////////////////////    
+    if($updateId != ''){
+        $asana->updateTask($updateId);
+    }
+    
 
 } else {
     echo '<p>ERROR: Something went wrong! Maybe your asana api key does not fit.</p>';
