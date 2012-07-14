@@ -90,6 +90,7 @@ $clGreen: #bdca07;
 #track-table {
     clear: both;
     display: none;
+    
     .my_timer {
         .time {
             line-height: 28px;
@@ -98,9 +99,30 @@ $clGreen: #bdca07;
             float: left;
             margin: 0 2em 0 0;
         }
+        
+    button{
+        
+        .start_stop_text{
+            margin-left:4px;
+        }
+        
+    }
+        
     }
     .tab-pane  {
         display: none;
+    }
+    
+    #tab1{
+        
+        .text_align{
+            
+            &.right{
+                text-align:right;    
+            }
+            
+        }
+        
     }
 
 }

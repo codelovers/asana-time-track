@@ -40,7 +40,6 @@ if($asana->getResponseCode() == '200' && $result != '' ){
     	}
     }
 
-
     // projects
     ////////////////////////////
     if($workspaceId != '' && $projectId == ''){
@@ -67,46 +66,64 @@ if($asana->getResponseCode() == '200' && $result != '' ){
         $result = json_decode($result);
 
         foreach($result->data as $task){
-
+             
              $value = $asana->getGuessAndWorkedTime($task->name);
              $taskState = $asana->getOneTask($task->id);
+
              $taskName = $value['taskName'];
              $guessHours = (!empty($value['guessHours'])) ? $value['guessHours'].'h' : '0h';
              $guessMinutes = (!empty($value['guessMinutes'])) ? $value['guessMinutes'].'m' : '0m';
              $workedHours = (!empty($value['workedHours'])) ? $value['workedHours'].'h' : '0h';
              $workedMinutes = (!empty($value['workedMinutes'])) ? $value['workedMinutes'].'m' : '0m';
+             $workedTime = $value['workedTimeSec'];
+             
+             // progress bar
+             $progressBarPercent = ($guessHours*60*1000 + $guessMinutes * 1000) / 100;
+             $progressBarPercent = ($workedHours*60*1000 + $workedMinutes * 1000) / $progressBarPercent;
+             
+             
              
              // task must be active and your own   
              if($taskState['completed'] || $taskState['assignee'] != $userId) {
                 continue;
              } else {
                 //echo '- <a href="?apiKey='. $apiKey . '&projectId=' . $projectId . '&updateId=' . $task->id . '" target="_self" data-guess-hours="'. $value['guessHours'] .'" data-guess-minutes="'. $value['guessMinutes'] .'" data-worked-hours="'. $value['workedHours'] .'" data-worked-minutes="'. $value['workedMinutes'] .'">' . $task->name . '</a><br />';
-                
-                echo '<tr data-task-id="' . $task->id . '">'
+                echo '<tr>'
+                    .'<td>'. $taskState['projects']["name"] .'</td>'
                     .'<td>'. $taskName  .'</td>'
-                    .'<td data-guess-hours="'. $guessHours .'" data-guess-minutes="'. $guessMinutes .'">'. $guessHours .' '. $guessMinutes .'</td>'
-                    .'<td data-worked-hours="'. $workedHours .'" data-worked-minutes="'. $workedMinutes .'">'. $workedHours .' '. $workedMinutes .'</td>'
-                    .'<td><div class="progress progress-success progress-striped active">
-                            <div class="bar" style="width: 0%;"></div>
+                    .'<td>'. $guessHours .' '. $guessMinutes .'</td>'
+                    .'<td class="worked_time" data-guess-hours="'.$value['guessHours'].'" data-guess-minutes="'.$value['guessMinutes'].'" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'. $workedHours .' '. $workedMinutes .'</td>'
+                    .'<td><div class="progress progress-success progress-striped">
+                            <div class="bar" style="width: ' . $progressBarPercent . '%;"></div>
                         </div>
                       </td>'
                     .'<td class="my_timer">
-                        <div class="time"></div>
+                        <div class="time">00:00:00</div>
                         <button class="btn btn-success" type="submit">
-                            <i class="icon-white icon-play"></i> &nbsp; Start
+                            <i class="icon-white icon-play"></i><span class="start_stop_text">Start</span>
                         </button>
                       </td>'
                     .'</tr>';
                  
              }
          }
+
+         echo '<tr><td colspan="4"><td class="text_align right">Worked today:</td><td class="my_timer">00:00:00</td></tr>';
+                 
         
     }
     
     // update
     ////////////////////////////    
     if($updateId != ''){
-        $asana->updateTask($updateId);
+        
+        $workedHours = $_GET['workedHours'];
+        $workedMinutes = $_GET['workedMinutes'];
+        $guessHours = $_GET['guessHours'];
+        $guessMinutes = $_GET['guessMinutes'];
+        $currentTaskName = $_GET['taskName'];
+        
+        $asana->updateTask($updateId, $workedHours, $workedMinutes, $guessHours, $guessMinutes,  $currentTaskName);
     }
     
 

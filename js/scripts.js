@@ -8,6 +8,8 @@ $(function(){
     var apiKeyImg = apiKeyForm.find('.ajax_img');
     var workspaceLoader = $('.container').children('#loader-wrapper');
     var loadingTextWrapper = $('.loading_text');
+    var activeWorkspaceId = null;
+    
     // some loading texts
     var loadingText = new Array('One apple a day keeps the doctor away...', 
                                 'If you can dream it, you can do it. Walt Disney (1901-1966)...',
@@ -17,6 +19,29 @@ $(function(){
                                 'Nothing is paticularily hard if you divide it into small jobs. Henry Ford (1863-1947)...');
                                 
     var loadingTextLength = loadingText.length;
+    
+      
+    $('.my_timer .btn').live('click', function(event){
+        var locateClickedElement = $(this);
+        var locateButtonText = locateClickedElement.find('span');
+        var locateButtonIcon = locateClickedElement.find('i.icon-white');
+        
+        if(locateClickedElement.hasClass('btn-success')){
+            locateClickedElement.removeClass('btn-success');
+            locateClickedElement.addClass('btn-danger');
+            locateButtonText.html('Stop');
+            locateButtonIcon.removeClass('icon-play').addClass('icon-stop');
+        } else{
+            locateClickedElement.removeClass('btn-danger');
+            locateClickedElement.addClass('btn-success');
+            locateButtonText.html('Start');
+            locateButtonIcon.removeClass('icon-stop').addClass('icon-play');
+        }
+
+        // start time tracking
+        locateClickedElement.prev('.time').stopwatch().stopwatch('toggle');
+        
+    });
     
     $('#start-modal').modal();
     
@@ -40,7 +65,7 @@ $(function(){
         }
         return false;
     });
-    
+
     function workspacesAjaxCall() {
         $.ajax({
           type: "GET",
@@ -82,13 +107,16 @@ $(function(){
     
     $('#workspace-container').on('click', '#workspace-container > .workspace', function(){
         var caption = $(this).find('h3').text();
-        var workspaceId = $(this).data('workspace-id');
+        activeWorkspaceId = $(this).data('workspace-id');
+
         $('#start-modal').modal('hide');
-        $('.workspace_caption').show().attr('data-workspace-id', workspaceId).html(caption);
-        projectsAjaxCall();
+        $('.workspace_caption').show().attr('data-workspace-id', activeWorkspaceId).html(caption);
+        // projectsAjaxCall();
+        tasksAjaxCall();
         randomLoadingText();
         workspaceLoader.show();    });
     
+    /*
     function projectsAjaxCall() {
         $.ajax({
           type: "GET",
@@ -105,7 +133,7 @@ $(function(){
             }
         });
     }
-    
+    */
     $('.nav-tabs').on('click', '.nav-tabs > li:not(.active)', function(){        var projectId = $(this).data('project-id');
         $('#tab1').hide();
         randomLoadingText();
@@ -113,10 +141,14 @@ $(function(){
         tasksAjaxCall(projectId);    });
     
     function tasksAjaxCall(projectId) {
+        
+        // clean tbody
+        $('#tab1').show().find('tbody').html('<tr><td colspan="6">One moment please, your assigned tasks are loading...</td></tr>');
+        
         $.ajax({
           type: "GET",
           url: "request.php",
-          data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + $('.workspace_caption').data('workspace-id') + "&projectId=" + projectId,
+          data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=" + projectId,
           success: function( result ) {
               $('#tab1').show().find('tbody').html(result);
               workspaceLoader.fadeOut();
@@ -132,5 +164,6 @@ $(function(){
         var randomNumber = Math.floor((Math.random()*loadingTextLength));
         loadingTextWrapper.html(loadingText[randomNumber]);
     }
+      
     
 });

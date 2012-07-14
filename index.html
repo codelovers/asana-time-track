@@ -24,7 +24,6 @@
   </head>
 
   <body>
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -103,24 +102,26 @@
     <div class="container">
 
     <h1 class="workspace_caption">Workspace</h1><div id="loader-wrapper"><img class="ajax_img" src="img/ajax-loader.gif"/><span class="loading_text"></span></div>
-    <div id="track-table" class="tabbable tabs-left">
+    <div id="track-table" class="tabbable tabs-left" style="display:block;">
+      <!--        
       <ul class="nav nav-tabs">
-        <!-- filled with content from server (ajax) -->
       </ul>
+      -->
       <div class="tab-content">
         <div class="tab-pane active" id="tab1">
           <table class="att_track_table table table-bordered">
             <thead>
               <tr>
-                <th>Taskname</th>
+                <th>Project</th>
+                <th>Tasks (assigned to you)</th>
                 <th>Guessed Time</th>
                 <th>Worked Time</th>
                 <th>Progress</th>
-                <th>Timer</th>
+                <th>Timer (auto save on)</th>
               </tr>
             </thead>
             <tbody>
-              
+               <!-- content rendered here -->
             </tbody>
           </table>
         </div>
@@ -145,6 +146,7 @@
     <script src="js/js-libs/bootstrap/bootstrap-carousel.js"></script>
     <script src="js/js-libs/bootstrap/bootstrap-typeahead.js"></script>
     <script src="js/js-libs/jquery/jquery.cookie.js"></script>
+    <script src="js/js-libs/jquery/jquery.stopwatch.js"></script>
     <script src="js/scripts.js"></script>
 
   </body>
