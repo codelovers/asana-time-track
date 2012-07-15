@@ -19,10 +19,15 @@ $(function(){
                                 'Nothing is paticularily hard if you divide it into small jobs. Henry Ford (1863-1947)...');
                                 
     var loadingTextLength = loadingText.length;
-    
       
     $('.my_timer .btn').live('click', function(event){
         var locateClickedElement = $(this);
+        var locateAllButtons = $('.my_timer .btn');
+        
+        // no more activity is possible, 
+        // only one task can be active
+        if(locateClickedElement.hasClass('disabled')) return;
+        
         var locateButtonText = locateClickedElement.find('span');
         var locateButtonIcon = locateClickedElement.find('i.icon-white');
         
@@ -31,11 +36,14 @@ $(function(){
             locateClickedElement.addClass('btn-danger');
             locateButtonText.html('Stop');
             locateButtonIcon.removeClass('icon-play').addClass('icon-stop');
+            locateAllButtons.addClass('disabled');
+            locateClickedElement.removeClass('disabled');
         } else{
             locateClickedElement.removeClass('btn-danger');
             locateClickedElement.addClass('btn-success');
             locateButtonText.html('Start');
             locateButtonIcon.removeClass('icon-stop').addClass('icon-play');
+            locateAllButtons.removeClass('disabled');
         }
 
         // start time tracking
@@ -162,7 +170,7 @@ $(function(){
     
     function randomLoadingText(){
         var randomNumber = Math.floor((Math.random()*loadingTextLength));
-        loadingTextWrapper.html(loadingText[randomNumber]);
+        //loadingTextWrapper.html(loadingText[randomNumber]);
     }
       
     

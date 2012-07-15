@@ -2,7 +2,7 @@
 
 (function( $ ){
 
-    var currentHours, currentMinutes, currentSeconds, progressState;
+    var currentHours, currentMinutes, currentSeconds, progressState, workedTimeToday;
     var saveInterval = 1;
 
     function incrementer(ct, increment) {
@@ -43,6 +43,11 @@
             return formatter(millis, data);
         };
         return formatMilliseconds(millis, data);
+    }
+    
+    function splitTime (value){
+         var value = value.split(":");
+         return value;
     }
 
     var methods = {
@@ -85,6 +90,9 @@
         },
         
         start: function() {
+            
+            workedTimeToday = $('.worked_time_today');
+            
             return this.each(function() {
                 var $this = $(this),
                     data = $this.data('stopwatch');
@@ -119,13 +127,26 @@
             
             // update left row "Worked Time"
             // check every 60 seconds, it´s better for performance
-            if(currentSeconds == 1){
+            if(currentSeconds == 0){
+              
+                // needed for entire worked time today
+                var locateAllTimer = $('.my_timer .time');
+                
+                var entireHours = 0;
+                var entireMinutes = 0;
+                
+                $.each(locateAllTimer, function(i, v){
+                   entireHours += parseInt(splitTime($(v).html())[0]);
+                   entireMinutes += parseInt(splitTime($(v).html())[1]);
+                });
+                // render into bottom worked_time_today container
+                workedTimeToday.html(entireHours + ' hours ' + entireMinutes + ' minutes');
                 
                 // locate elements
                 var locateClickedTd = $this.parent('td');
                 var locateProgressBar = locateClickedTd.prev().find('.bar');
                 var locateWorkedTimeWrapper = locateClickedTd.prev().prev('.worked_time');
-                
+
                 // guess & worked time
                 var getWorkedHours = locateWorkedTimeWrapper.data('worked-hours');
                 var getWorkedMinutes = locateWorkedTimeWrapper.data('worked-minutes');
@@ -140,8 +161,10 @@
                 var apiKey = $.cookie('asana-api-key');
                 
                 // calculate new worked time
-                var newHours = getWorkedHours+currentHours;
                 var newMinutes = getWorkedMinutes+currentMinutes;
+                var rest = newMinutes-60;
+                var newMinutes = (rest < 0 ) ? newMinutes : rest;
+                var newHours = (rest < 0 ) ? (getWorkedHours+currentHours) : (getWorkedHours+currentHours+1);
                                 
                 // calculate progress
                 var percent = (getGuessHours*60*1000 + getGuessMinutes * 1000) / 100;
@@ -162,10 +185,10 @@
                       data: "apiKey=" + apiKey + "&updateId=" + getTaskId + "&guessHours=" + getGuessHours + "&guessMinutes=" + getGuessMinutes + "&workedHours=" + newHours + "&workedMinutes=" + newMinutes + "&taskName=" + getTaskName,
                       success: function( result ) {
                          //console.log('auto saved');
-                        },
+                      },
                       error : function( msg ) {
                          //console.log('something went wrong...');
-                        }
+                      }
                     });
                           
                    // set interval again                    
@@ -223,6 +246,7 @@
         } else {
             $.error( 'Method ' +  method + ' does not exist on jQuery.stopwatch' );
         }
+        
     };
     
 

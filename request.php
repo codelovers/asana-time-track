@@ -108,7 +108,7 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              }
          }
 
-         echo '<tr><td colspan="4"><td class="text_align right">Worked today:</td><td class="my_timer">00:00:00</td></tr>';
+         echo '<tr class="worked_time_line"><td colspan="4"><td class="text_align right">Worked today:</td><td class="worked_time_today">0 hours 0 minutes</td></tr>';
                  
         
     }
