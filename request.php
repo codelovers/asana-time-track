@@ -40,29 +40,13 @@ if($asana->getResponseCode() == '200' && $result != '' ){
     	}
     }
 
-    // projects
-    ////////////////////////////
-    if($workspaceId != '' && $projectId == ''){
-           
-       //echo '<b>Projects:</b><br />';
-       
-        $result = $asana->getProjects($workspaceId);
-        $result = json_decode($result);
-        $counter = 1;
-        foreach($result->data as $project){
-            //echo '- <a href="?apiKey='. $apiKey . '&workspaceId=' . $workspaceId.'&projectId=' . $project->id . '" target="_self">' . $project->name . '</a><br />';
-            $class = ($counter == 1) ? 'class="active"' : 'class=""';
-            echo '<li data-project-id="' . $project->id .'"' . $class .'><a href="#tab' . $counter . '" data-toggle="tab">' . $project->name . '</a></li>';            $counter++;
-        }
-    }
-    
     // tasks
     ////////////////////////////
     if($projectId != ''){
           
         //echo '<b>Tasks:</b><br />';
         
-        $result = $asana->getTasks($projectId, $workspaceId);
+        $result = $asana->getTasks($workspaceId);
         $result = json_decode($result);
 
         foreach($result->data as $task){
@@ -78,12 +62,14 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              $workedTime = $value['workedTimeSec'];
              
              // progress bar
-             $progressBarPercent = ($guessHours*60*1000 + $guessMinutes * 1000) / 100;
-             $progressBarPercent = ($workedHours*60*1000 + $workedMinutes * 1000) / $progressBarPercent;
+             if(($value['guessHours']+$value['guessMinutes']) > ($value['workedHours']+$value['workedMinutes'])){
+                $progressBarPercent = ($guessHours*60*1000 + $guessMinutes * 1000) / 100;
+                $progressBarPercent = ($workedHours*60*1000 + $workedMinutes * 1000) / $progressBarPercent;
+             } else{
+                $progressBarPercent = 100;
+             }
+             
              $progressState = ($progressBarPercent < 90) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
-             
-             
-             
              
              // task must be active and your own   
              if($taskState['completed'] || $taskState['assignee'] != $userId) {

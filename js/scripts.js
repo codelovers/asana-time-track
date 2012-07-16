@@ -144,7 +144,7 @@ $(function(){
         $.ajax({
           type: "GET",
           url: "request.php",
-          data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=" + projectId,
+          data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=all",
           success: function( result ) {
               $('#tab1').show().find('tbody').html(result);
               workspaceLoader.fadeOut();
