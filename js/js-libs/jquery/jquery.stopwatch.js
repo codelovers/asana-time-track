@@ -163,7 +163,7 @@
                 // calculate new worked time
                 var newMinutes = getWorkedMinutes+currentMinutes;
                 var rest = newMinutes-60;
-                var newMinutes = (rest < 0 ) ? newMinutes : rest;
+                    newMinutes = (rest < 0 ) ? newMinutes : rest;
                 var newHours = (rest < 0 ) ? (getWorkedHours+currentHours) : (getWorkedHours+currentHours+1);
                                 
                 // calculate progress

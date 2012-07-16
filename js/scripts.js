@@ -9,17 +9,7 @@ $(function(){
     var workspaceLoader = $('.container').children('#loader-wrapper');
     var loadingTextWrapper = $('.loading_text');
     var activeWorkspaceId = null;
-    
-    // some loading texts
-    var loadingText = new Array('One apple a day keeps the doctor away...', 
-                                'If you can dream it, you can do it. Walt Disney (1901-1966)...',
-                                'Before you can score, you must first have a goal...',
-                                'Our team is well balanced. We have problems everywhere. Tommy Prothro (1941)...',
-                                'The prize of greatness is responsibility. Winston Churchill (1874-1965)...',
-                                'Nothing is paticularily hard if you divide it into small jobs. Henry Ford (1863-1947)...');
-                                
-    var loadingTextLength = loadingText.length;
-      
+
     $('.my_timer .btn').live('click', function(event){
         var locateClickedElement = $(this);
         var locateAllButtons = $('.my_timer .btn');
@@ -144,7 +134,6 @@ $(function(){
     */
     $('.nav-tabs').on('click', '.nav-tabs > li:not(.active)', function(){        var projectId = $(this).data('project-id');
         $('#tab1').hide();
-        randomLoadingText();
         workspaceLoader.show();
         tasksAjaxCall(projectId);    });
     
@@ -166,11 +155,6 @@ $(function(){
               workspaceLoader.fadeOut();
             }
         });
-    }
-    
-    function randomLoadingText(){
-        var randomNumber = Math.floor((Math.random()*loadingTextLength));
-        //loadingTextWrapper.html(loadingText[randomNumber]);
     }
       
     
