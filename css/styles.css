@@ -7493,25 +7493,25 @@ a.badge:hover {
   clear: both;
   display: none;
 }
-/* line 96, ../sass/styles.scss */
+/* line 95, ../sass/styles.scss */
 #track-table .my_timer .time {
   line-height: 28px;
 }
-/* line 99, ../sass/styles.scss */
+/* line 98, ../sass/styles.scss */
 #track-table .my_timer > * {
   float: left;
   margin: 0 2em 0 0;
 }
-/* line 104, ../sass/styles.scss */
+/* line 103, ../sass/styles.scss */
 #track-table .my_timer button .start_stop_text {
   margin-left: 4px;
 }
-/* line 109, ../sass/styles.scss */
+/* line 108, ../sass/styles.scss */
 #track-table .worked_time_line {
   background-color: #f8f8f8;
   font-weight: bold;
 }
-/* line 114, ../sass/styles.scss */
+/* line 113, ../sass/styles.scss */
 #track-table .text_align.right {
   text-align: right;
 }

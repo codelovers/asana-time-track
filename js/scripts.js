@@ -111,7 +111,7 @@ $(function(){
         workspacesAjaxCall();
         return false;
     });
-    
+     
     $('#change-workspace').on('click', function(){
         modalBackdrop.fadeIn();
     });
@@ -129,6 +129,7 @@ $(function(){
         $('#start-modal').modal('hide');
         $('.workspace_caption').show().attr('data-workspace-id', activeWorkspaceId).html(caption);
         modalBackdrop.fadeOut();
+        $('#start-modal').children('.modal-footer').html('<a href="#" class="btn" data-dismiss="modal">Close</a>');
         tasksAjaxCall();
         workspaceLoader.show();    });
     
