@@ -6,8 +6,9 @@ $(function(){
     var apiKeyInput = apiKeyForm.find('#api-key');
     var workspaceContainer = apiKeyForm.siblings('#workspace-container');
     var apiKeyImg = apiKeyForm.find('.ajax_img');
-    var workspaceLoader = $('.container').children('#loader-wrapper');
-    var loadingTextWrapper = $('.loading_text');
+    var workspaceLoader = $('.container').children('#loader-wrapper').find('.ajax_img');
+    var workspaceRefresh = $('.container').children('#loader-wrapper').find('#workspace-refresh');
+    var modalBackdrop = $('.modal-backdrop');
     var activeWorkspaceId = null;
 
     $('.my_timer .btn').live('click', function(event){
@@ -43,10 +44,11 @@ $(function(){
     
     $('#start-modal').modal({
       keyboard: false,
+      backdrop: false
     });
     
     $('.modal-backdrop').on('click', function(e){
-        console.log(e);
+        console.log(e.target);
         return false;
     });
     
@@ -110,57 +112,43 @@ $(function(){
         return false;
     });
     
+    $('#change-workspace').on('click', function(){
+        modalBackdrop.fadeIn();
+    });
+    
+    workspaceRefresh.on('click', function(){
+        tasksAjaxCall();
+        workspaceRefresh.hide();
+        workspaceLoader.delay('200').show();
+    });
+    
     $('#workspace-container').on('click', '#workspace-container > .workspace', function(){
         var caption = $(this).find('h3').text();
         activeWorkspaceId = $(this).data('workspace-id');
 
         $('#start-modal').modal('hide');
         $('.workspace_caption').show().attr('data-workspace-id', activeWorkspaceId).html(caption);
-        // projectsAjaxCall();
+        modalBackdrop.fadeOut();
         tasksAjaxCall();
         workspaceLoader.show();    });
     
-    /*
-    function projectsAjaxCall() {
-        $.ajax({
-          type: "GET",
-          url: "request.php",
-          data: "apiKey=" + apiKeyInput.val()+"&workspaceId=" + $('.workspace_caption').data('workspace-id'),
-          success: function( result ) {
-              $('#track-table').show().children('.nav-tabs').html(result);
-              var projectId = $('#track-table').children('.nav-tabs').children('.active').data('project-id');
-              tasksAjaxCall(projectId);
-            },
-          error : function( msg ) {
-              $('.container').html(msg.responseText).fadeIn();
-              workspaceLoader.fadeOut();
-            }
-        });
-    }
-    
-    
-    $('.nav-tabs').on('click', '.nav-tabs > li:not(.active)', function(){        var projectId = $(this).data('project-id');
-        $('#tab1').hide();
-        workspaceLoader.show();
-        tasksAjaxCall(projectId);    });
-    */
-    
     function tasksAjaxCall(projectId) {
-        console.log('here');
         // clean tbody
-        $('#tab1').show().find('tbody').html('<tr><td colspan="6">One moment please, your assigned tasks are loading...</td></tr>');
+        $('#track-table').show().find('tbody').html('<tr><td colspan="6">One moment please, your assigned tasks are loading...</td></tr>');
         
         $.ajax({
           type: "GET",
           url: "request.php",
           data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=all",
           success: function( result ) {
-              $('#tab1').show().find('tbody').html(result);
+              $('#track-table').show().find('tbody').html(result);
               workspaceLoader.fadeOut();
+              workspaceRefresh.fadeIn();
             },
           error : function( msg ) {
-              $('body > .container').append(msg.responseText).fadeIn();
+              $('#track-table').html(msg.responseText).fadeIn();
               workspaceLoader.fadeOut();
+              workspaceRefresh.fadeIn();
             }
         });
     }

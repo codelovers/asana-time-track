@@ -36,7 +36,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a data-toggle="modal" href="#start-modal">Change Workspace </a></li>
+              <li id="change-workspace"><a data-toggle="modal" href="#start-modal">Change Workspace </a></li>
               <li><a href="#contact">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -81,33 +81,33 @@
     
     <div class="container">
 
-    <h1 class="workspace_caption">Workspace</h1><div id="loader-wrapper"><img class="ajax_img" src="img/ajax-loader.gif"/><span class="loading_text"></span></div>
+    <h1 class="workspace_caption">Workspace</h1>
+    <div id="loader-wrapper">
+        <button id="workspace-refresh" class="btn">
+            <i class="icon-refresh"></i>
+            Refresh
+        </button>
+        <img class="ajax_img" src="img/ajax-loader.gif"/>
+    </div>
     <div id="track-table" class="tabbable tabs-left" style="display:block;">
-      <!--        
-      <ul class="nav nav-tabs">
-      </ul>
-      -->
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
-          <table class="att_track_table table table-bordered">
-            <thead>
-              <tr>
-                <th>Project</th>
-                <th>Tasks (assigned to you)</th>
-                <th>Guessed Time</th>
-                <th>Worked Time</th>
-                <th>Progress</th>
-                <th>Timer</th>
-              </tr>
-            </thead>
-            <tbody>
-               <!-- content rendered here -->
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <table class="att_track_table table table-bordered">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Tasks (assigned to you)</th>
+            <th>Guessed Time</th>
+            <th>Worked Time</th>
+            <th>Progress</th>
+            <th>Timer</th>
+          </tr>
+        </thead>
+        <tbody>
+           <!-- content rendered here -->
+        </tbody>
+      </table>
     </div>
     </div> <!-- /container -->
+    <div class="modal-backdrop"></div>
 
     <!-- Le javascript
     ================================================== -->
@@ -128,6 +128,5 @@
     <script src="js/js-libs/jquery/jquery.cookie.js"></script>
     <script src="js/js-libs/jquery/jquery.stopwatch.js"></script>
     <script src="js/scripts.js"></script>
-
   </body>
 </html>

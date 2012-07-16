@@ -7437,11 +7437,16 @@ a.badge:hover {
 }
 /* line 41, ../sass/styles.scss */
 .container #loader-wrapper {
-  display: none;
-  margin: 0.9em 0 0 1em;
+  margin: 0.3em 0 0 0;
 }
-/* line 45, ../sass/styles.scss */
+/* line 43, ../sass/styles.scss */
 .container #loader-wrapper .ajax_img, .container #loader-wrapper span {
+  display: none;
+  margin-left: 1em;
+}
+/* line 47, ../sass/styles.scss */
+.container #loader-wrapper #workspace-refresh {
+  display: none;
   margin-left: 1em;
 }
 
@@ -7497,20 +7502,16 @@ a.badge:hover {
   float: left;
   margin: 0 2em 0 0;
 }
-/* line 106, ../sass/styles.scss */
+/* line 104, ../sass/styles.scss */
 #track-table .my_timer button .start_stop_text {
   margin-left: 4px;
 }
-/* line 115, ../sass/styles.scss */
+/* line 109, ../sass/styles.scss */
 #track-table .worked_time_line {
   background-color: #f8f8f8;
   font-weight: bold;
 }
-/* line 120, ../sass/styles.scss */
-#track-table .tab-pane {
-  display: none;
-}
-/* line 128, ../sass/styles.scss */
-#track-table #tab1 .text_align.right {
+/* line 114, ../sass/styles.scss */
+#track-table .text_align.right {
   text-align: right;
 }

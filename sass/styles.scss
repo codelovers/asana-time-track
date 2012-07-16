@@ -39,15 +39,15 @@ $clGreen: #bdca07;
     }
         
     #loader-wrapper{
-        display: none;
-        margin: 0.9em 0 0 1em;
-    
+        margin: 0.3em 0 0 0;
         .ajax_img, span {
+            display: none;
             margin-left:1em;
         }
-    
-        
-        
+        #workspace-refresh {
+            display: none;
+            margin-left:1em;
+        }
     }
     
 }
@@ -99,37 +99,19 @@ $clGreen: #bdca07;
             float: left;
             margin: 0 2em 0 0;
         }
-        
-    button{
-        
-        .start_stop_text{
-            margin-left:4px;
+        button {
+            .start_stop_text{
+                margin-left:4px;
+            }
         }
-        
     }
-        
-    }
-    
-    
     .worked_time_line{
         background-color:#f8f8f8;
         font-weight:bold;
     }
-    
-    .tab-pane  {
-        display: none;
-    }
-    
-    #tab1{
-        
-        .text_align{
-            
-            &.right{
-                text-align:right;    
-            }
-            
+    .text_align{
+        &.right{
+            text-align:right;
         }
-        
     }
-
 }
