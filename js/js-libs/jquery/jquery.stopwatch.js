@@ -144,7 +144,9 @@
                 
                 // locate elements
                 var locateClickedTd = $this.parent('td');
-                var locateProgressBar = locateClickedTd.prev().find('.bar');
+                var locateProgress = locateClickedTd.prev();
+                var locateProgressWrapper = locateProgress.find('.progress');
+                var locateProgressBar = locateProgress.find('.bar');
                 var locateWorkedTimeWrapper = locateClickedTd.prev().prev('.worked_time');
 
                 // guess & worked time
@@ -169,6 +171,16 @@
                 // calculate progress
                 var percent = (getGuessHours*60*1000 + getGuessMinutes * 1000) / 100;
                     percent = (newHours*60*1000 + newMinutes * 1000) / percent;
+                    
+                    // change progress state
+                    if(percent >= 90 && percent < 100){
+                        locateProgressWrapper.removeClass('progress-success');
+                        locateProgressWrapper.addClass('progress-warning');
+                    } else if (percent >= 100){
+                        locateProgressWrapper.removeClass('progress-warning');
+                        locateProgressWrapper.addClass('progress-danger');
+                    }
+                    
                     locateProgressBar.css('width', percent + '%');
                     
                 // render new worked time into left row "Worked Time"

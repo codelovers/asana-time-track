@@ -111,7 +111,6 @@ $(function(){
         $('.workspace_caption').show().attr('data-workspace-id', activeWorkspaceId).html(caption);
         // projectsAjaxCall();
         tasksAjaxCall();
-        randomLoadingText();
         workspaceLoader.show();    });
     
     /*

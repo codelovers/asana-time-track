@@ -80,6 +80,8 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              // progress bar
              $progressBarPercent = ($guessHours*60*1000 + $guessMinutes * 1000) / 100;
              $progressBarPercent = ($workedHours*60*1000 + $workedMinutes * 1000) / $progressBarPercent;
+             $progressState = ($progressBarPercent < 90) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
+             
              
              
              
@@ -93,7 +95,7 @@ if($asana->getResponseCode() == '200' && $result != '' ){
                     .'<td>'. $taskName  .'</td>'
                     .'<td>'. $guessHours .' '. $guessMinutes .'</td>'
                     .'<td class="worked_time" data-guess-hours="'.$value['guessHours'].'" data-guess-minutes="'.$value['guessMinutes'].'" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'. $workedHours .' '. $workedMinutes .'</td>'
-                    .'<td><div class="progress progress-success progress-striped">
+                    .'<td><div class="progress ' . $progressState . ' progress-striped">
                             <div class="bar" style="width: ' . $progressBarPercent . '%;"></div>
                         </div>
                       </td>'
