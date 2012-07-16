@@ -7435,64 +7435,82 @@ a.badge:hover {
   margin: 0 0 30px 0;
   float: left;
 }
-/* line 40, ../sass/styles.scss */
-.container .ajax_img {
+/* line 41, ../sass/styles.scss */
+.container #loader-wrapper {
   display: none;
   margin: 0.9em 0 0 1em;
 }
+/* line 45, ../sass/styles.scss */
+.container #loader-wrapper .ajax_img, .container #loader-wrapper span {
+  margin-left: 1em;
+}
 
-/* line 47, ../sass/styles.scss */
+/* line 56, ../sass/styles.scss */
 .att_track_table tbody tr > td {
   vertical-align: middle;
 }
-/* line 50, ../sass/styles.scss */
+/* line 59, ../sass/styles.scss */
 .att_track_table tbody tr .progress {
   margin-bottom: 0;
 }
 
-/* line 57, ../sass/styles.scss */
+/* line 66, ../sass/styles.scss */
 #start-modal #api-key-form .controls {
   margin-left: 0px;
 }
-/* line 60, ../sass/styles.scss */
+/* line 69, ../sass/styles.scss */
 #start-modal .ajax_img {
   display: none;
 }
-/* line 63, ../sass/styles.scss */
+/* line 72, ../sass/styles.scss */
 #start-modal #api-key-edit, #start-modal #api-key-delete, #start-modal #api-key-refresh {
   display: none;
 }
-/* line 67, ../sass/styles.scss */
+/* line 76, ../sass/styles.scss */
 #start-modal #workspace-container {
   display: none;
 }
-/* line 69, ../sass/styles.scss */
+/* line 78, ../sass/styles.scss */
 #start-modal #workspace-container .workspace {
   text-align: center;
   cursor: pointer;
+  overflow: hidden;
 }
-/* line 72, ../sass/styles.scss */
+/* line 83, ../sass/styles.scss */
 #start-modal #workspace-container .workspace:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 20px inset;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 20px inset;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 20px inset;
 }
 
-/* line 79, ../sass/styles.scss */
+/* line 91, ../sass/styles.scss */
 #track-table {
   clear: both;
   display: none;
 }
-/* line 83, ../sass/styles.scss */
+/* line 96, ../sass/styles.scss */
 #track-table .my_timer .time {
   line-height: 28px;
 }
-/* line 86, ../sass/styles.scss */
+/* line 99, ../sass/styles.scss */
 #track-table .my_timer > * {
   float: left;
   margin: 0 2em 0 0;
 }
-/* line 91, ../sass/styles.scss */
+/* line 106, ../sass/styles.scss */
+#track-table .my_timer button .start_stop_text {
+  margin-left: 4px;
+}
+/* line 115, ../sass/styles.scss */
+#track-table .worked_time_line {
+  background-color: #f8f8f8;
+  font-weight: bold;
+}
+/* line 120, ../sass/styles.scss */
 #track-table .tab-pane {
   display: none;
+}
+/* line 128, ../sass/styles.scss */
+#track-table #tab1 .text_align.right {
+  text-align: right;
 }

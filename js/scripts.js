@@ -41,7 +41,14 @@ $(function(){
         
     });
     
-    $('#start-modal').modal();
+    $('#start-modal').modal({
+      keyboard: false,
+    });
+    
+    $('.modal-backdrop').on('click', function(e){
+        console.log(e);
+        return false;
+    });
     
     if(apiKeyCookie != null) {
         apiKeyFormSubmit.hide();
@@ -130,27 +137,29 @@ $(function(){
             }
         });
     }
-    */
+    
+    
     $('.nav-tabs').on('click', '.nav-tabs > li:not(.active)', function(){        var projectId = $(this).data('project-id');
         $('#tab1').hide();
         workspaceLoader.show();
         tasksAjaxCall(projectId);    });
+    */
     
     function tasksAjaxCall(projectId) {
-        
+        console.log('here');
         // clean tbody
         $('#tab1').show().find('tbody').html('<tr><td colspan="6">One moment please, your assigned tasks are loading...</td></tr>');
         
         $.ajax({
           type: "GET",
           url: "request.php",
-          data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=" + projectId,
+          data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=all",
           success: function( result ) {
               $('#tab1').show().find('tbody').html(result);
               workspaceLoader.fadeOut();
             },
           error : function( msg ) {
-              $('.container').append(msg.responseText).fadeIn();
+              $('body > .container').append(msg.responseText).fadeIn();
               workspaceLoader.fadeOut();
             }
         });
