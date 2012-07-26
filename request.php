@@ -67,7 +67,7 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              
              if($progressBarPercent == '') $progressBarPercent = 100;
              
-             $progressState = ($progressBarPercent < 90) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
+             $progressState = ($progressBarPercent < 80) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
              
              // task must be active and your own   
              if($taskState['completed'] || $taskState['assignee'] != $userId) {
@@ -76,13 +76,15 @@ if($asana->getResponseCode() == '200' && $result != '' ){
                 echo '<tr>'
                     .'<td>'. $taskState['projects']['name'] .'</td>'
                     .'<td>'. $taskName  .'</td>'
-                    .'<td class="estimated_time" data-estimated-hours="'.$value['estimatedHours'].'" data-estimated-minutes="'.$value['estimatedMinutes'].'">'. $estimatedHours .' '. $estimatedMinutes
+                    .'<td class="estimated_time" data-estimated-hours="'.$value['estimatedHours'].'" data-estimated-minutes="'.$value['estimatedMinutes'].'">'
+                        . '<span class="my_label" rel="tooltip" title="click to edit">' . $estimatedHours .' '. $estimatedMinutes . '</span>'
                         . '<input class="date-picker-et" name="date-picker-et"/>'
                     . '</td>'
-                    .'<td class="worked_time" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'. $workedHours .' '. $workedMinutes
+                    .'<td class="worked_time" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'
+                        . '<span class="my_label" rel="tooltip" title="click to edit">' . $workedHours .' '. $workedMinutes . '</span>'
                         . '<input class="date-picker-wt" name="date-picker-wt"/>'
                     . '</td>'
-                    .'<td><div class="progress ' . $progressState . ' progress-striped">
+                    .'<td class="my_progress"><div class="progress ' . $progressState . ' progress-striped">
                             <div class="bar" style="width: ' . $progressBarPercent . '%;"></div>
                         </div>
                       </td>'

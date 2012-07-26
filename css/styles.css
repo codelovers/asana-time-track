@@ -7405,7 +7405,8 @@ a.badge:hover {
     overflow: visible !important;
   }
 }
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel overlay */
+/* line 3, ../sass/_mobiscroll.core-2.0.1.scss */
 .dw {
   min-width: 170px;
   padding: 0 10px;
@@ -7414,24 +7415,25 @@ a.badge:hover {
   left: 0;
   z-index: 1001;
   color: #000;
-  font-family: arial,verdana,sans-serif;
+  font-family: arial, verdana, sans-serif;
   font-size: 12px;
   text-shadow: none;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 15, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwi {
   position: static;
   margin: 5px;
   display: inline-block;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 20, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwwr {
   zoom: 1;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel overlay background */
+/* line 24, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwo {
   width: 100%;
   background: #000;
@@ -7439,24 +7441,27 @@ a.badge:hover {
   top: 0;
   left: 0;
   z-index: 1000;
-  opacity: .7;
+  opacity: 0;
   filter: Alpha(Opacity=70);
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel wheel container wrapper */
+/* line 35, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwc {
   float: left;
   margin: 0 2px 5px 2px;
   padding-top: 30px;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 40, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwcc {
   clear: both;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel label */
+/* line 44, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwl {
+  /*margin: 0 2px;*/
   text-align: center;
   line-height: 30px;
   height: 30px;
@@ -7464,22 +7469,25 @@ a.badge:hover {
   position: absolute;
   top: -30px;
   width: 100%;
+  font-weight: bold;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel value */
+/* line 56, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwv {
   padding: 10px 0;
   border-bottom: 1px solid #000;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel wheel container */
+/* line 61, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwrc {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 66, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwwc {
   margin: 0;
   padding: 0 2px;
@@ -7488,44 +7496,48 @@ a.badge:hover {
   zoom: 1;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel wheels */
+/* line 74, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwwl {
   margin: 4px 2px;
   position: relative;
   background: #888;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, black), color-stop(0.35, #333333), color-stop(0.5, #888888), color-stop(0.65, #333333), color-stop(1, black));
-  background: -moz-linear-gradient(black 0, #333333 35%, #888888 50%, #333333 65%, black 100%);
-  background: -ms-linear-gradient(black 0, #333333 35%, #888888 50%, #333333 65%, black 100%);
-  background: -o-linear-gradient(black 0, #333333 35%, #888888 50%, #333333 65%, black 100%);
+  background: -moz-linear-gradient(black 0%, #333333 35%, #888888 50%, #333333 65%, black 100%);
+  background: -ms-linear-gradient(black 0%, #333333 35%, #888888 50%, #333333 65%, black 100%);
+  background: -o-linear-gradient(black 0%, #333333 35%, #888888 50%, #333333 65%, black 100%);
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 83, ../sass/_mobiscroll.core-2.0.1.scss */
 .dww {
   margin: 0 2px;
   overflow: hidden;
   position: relative;
+  /*top: -30px;*/
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 89, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwsc .dww {
   color: #fff;
   background: #444;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, black), color-stop(0.45, #444444), color-stop(0.55, #444444), color-stop(1, black));
-  background: -moz-linear-gradient(black 0, #444444 45%, #444444 55%, black 100%);
-  background: -ms-linear-gradient(black 0, #444444 45%, #444444 55%, black 100%);
-  background: -o-linear-gradient(black 0, #444444 45%, #444444 55%, black 100%);
+  background: -moz-linear-gradient(black 0%, #444444 45%, #444444 55%, black 100%);
+  background: -ms-linear-gradient(black 0%, #444444 45%, #444444 55%, black 100%);
+  background: -o-linear-gradient(black 0%, #444444 45%, #444444 55%, black 100%);
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 97, ../sass/_mobiscroll.core-2.0.1.scss */
 .dww ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  /*display: block;
+  width: 100%;*/
   position: relative;
   z-index: 2;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 106, ../sass/_mobiscroll.core-2.0.1.scss */
 .dww li {
   list-style: none;
   margin: 0;
@@ -7540,18 +7552,21 @@ a.badge:hover {
   filter: Alpha(Opacity=30);
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Valid entry */
+/* line 120, ../sass/_mobiscroll.core-2.0.1.scss */
 .dww li.dw-v {
   opacity: 1;
   filter: Alpha(Opacity=100);
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Hidden entry */
+/* line 125, ../sass/_mobiscroll.core-2.0.1.scss */
 .dww li.dw-h {
   visibility: hidden;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Wheel +/- buttons */
+/* line 129, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwwb {
   position: absolute;
   z-index: 4;
@@ -7562,16 +7577,17 @@ a.badge:hover {
   text-align: center;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 138, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwwbp {
   top: 0;
   -webkit-border-radius: 3px 3px 0 0;
   -moz-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
   font-size: 40px;
+  border-top: 1px solid #AAA;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 146, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwwbm {
   bottom: 0;
   -webkit-border-radius: 0 0 3px 3px;
@@ -7579,29 +7595,31 @@ a.badge:hover {
   border-radius: 0 0 3px 3px;
   font-size: 32px;
   font-weight: bold;
+  border-bottom: 1px solid #AAA;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 155, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwpm .dwwc {
   background: transparent;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 158, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwpm .dww {
   margin: -1px;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 161, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwpm .dww li {
   text-shadow: none;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 164, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwpm .dwwol {
   display: none;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel wheel overlay */
+/* line 168, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwwo {
   position: absolute;
   z-index: 3;
@@ -7610,12 +7628,13 @@ a.badge:hover {
   width: 100%;
   height: 100%;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, black), color-stop(0.52, rgba(44, 44, 44, 0)), color-stop(0.48, rgba(44, 44, 44, 0)), color-stop(1, black));
-  background: -moz-linear-gradient(black 0, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
-  background: -ms-linear-gradient(black 0, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
-  background: -o-linear-gradient(black 0, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
+  background: -moz-linear-gradient(black 0%, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
+  background: -ms-linear-gradient(black 0%, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
+  background: -o-linear-gradient(black 0%, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Background line */
+/* line 181, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwwol {
   position: absolute;
   z-index: 1;
@@ -7628,7 +7647,8 @@ a.badge:hover {
   border-bottom: 1px solid #555;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel button */
+/* line 193, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbg .dwb {
   display: block;
   height: 40px;
@@ -7638,162 +7658,121 @@ a.badge:hover {
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
-  text-shadow: 0 -1px 1px black;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
+  color: #333;
   -webkit-border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  color: #fff;
-  background: #000;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, black), color-stop(0.5, #6e6e6e));
-  background: -moz-linear-gradient(#6e6e6e 50%, black 50%);
-  background: -ms-linear-gradient(#6e6e6e 50%, black 50%);
-  background: -o-linear-gradient(#6e6e6e 50%, black 50%);
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0 inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
+  -moz-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0 inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
+  box-shadow: rgba(255, 255, 255, 0.2) 0 1px 0 inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
+  background-color: white;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFE6E6E6');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -o-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -ms-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  text-shadow: rgba(255, 255, 255, 0.75) 0 1px 1px;
+  border: 1px solid #CCC;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel button container */
+/* line 212, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbc {
+  /*margin-top: 5px;*/
   padding: 5px 0;
   text-align: center;
   clear: both;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Datewheel button wrapper */
+/* line 219, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbw {
   display: inline-block;
   width: 50%;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Hidden label */
+/* line 224, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwhl {
   padding-top: 10px;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 227, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwhl .dwl {
   display: none;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* Backgrounds */
+/* line 231, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbg {
   background: #fff;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 7px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 7px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 7px;
+  border: 1px solid #999;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 237, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbg .dwpm .dww {
   color: #000;
   background: #fff;
   border: 1px solid #AAA;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 242, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbg .dwwb {
   background: #ccc;
   color: #888;
-  text-shadow: 0 -1px 1px #333333;
-  box-shadow: 0 0 5px #333;
-  -webkit-box-shadow: 0 0 5px #333;
-  -moz-box-shadow: 0 0 5px #333;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 246, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbg .dwwbp {
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #bdbdbd), color-stop(1, #f7f7f7));
-  background: -moz-linear-gradient(#f7f7f7, #bdbdbd);
-  background: -ms-linear-gradient(#f7f7f7, #bdbdbd);
-  background: -o-linear-gradient(#f7f7f7, #bdbdbd);
+  background-color: white;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFE6E6E6');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -o-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -ms-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 251, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbg .dwwbm {
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f7f7f7), color-stop(1, #bdbdbd));
-  background: -moz-linear-gradient(#bdbdbd, #f7f7f7);
-  background: -ms-linear-gradient(#bdbdbd, #f7f7f7);
-  background: -o-linear-gradient(#bdbdbd, #f7f7f7);
+  background-color: white;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFE6E6E6');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -o-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: -ms-linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
+  background-image: linear-gradient(top, #ffffff 0%, #e6e6e6 100%);
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 256, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbg .dwb-a {
-  background: #3c7500;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #3c7500), color-stop(0.5, #94c840));
-  background: -moz-linear-gradient(#94c840 50%, #3c7500 50%);
-  background: -ms-linear-gradient(#94c840 50%, #3c7500 50%);
-  background: -o-linear-gradient(#94c840 50%, #3c7500 50%);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
 }
 
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+/* line 259, ../sass/_mobiscroll.core-2.0.1.scss */
 .dwbg .dwwl .dwb-a {
-  background: #3c7500;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c7500), color-stop(1, #94c840));
-  background: -moz-linear-gradient(#94c840, #3c7500);
-  background: -ms-linear-gradient(#94c840, #3c7500);
-  background: -o-linear-gradient(#94c840, #3c7500);
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.sense-ui .dw {
-  padding: 0;
-  background: #333;
-  border: 2px solid #fff;
-  color: #fff;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.sense-ui .dwv {
-  padding: 5px 10px;
-  border-bottom: 1px solid #666;
-  text-align: left;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.sense-ui .dwwc {
-  background: #333;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.sense-ui .dww {
-  margin: 0 2px;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.sense-ui .dwpm .dww {
-  margin: 0;
-  border: 0;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.sense-ui .dwbc {
-  padding: 5px 1px;
-  background: #000;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, black), color-stop(0.5, #666666));
-  background: -moz-linear-gradient(#666666 50%, black 50%);
-  background: -ms-linear-gradient(#666666 50%, black 50%);
-  background: -o-linear-gradient(#666666 50%, black 50%);
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.sense-ui .dwb {
-  margin: 0 5px;
-  background: #000;
-  border: 1px solid #333;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, black), color-stop(1, #444444));
-  background: -moz-linear-gradient(#444444, black);
-  background: -ms-linear-gradient(#444444, black);
-  background: -o-linear-gradient(#444444, black);
-  box-shadow: inset 0 0 5px #000;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.sense-ui .dwb-a {
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c7500), color-stop(1, #94c840));
-  background: -moz-linear-gradient(#94c840, #3c7500);
-  background: -ms-linear-gradient(#94c840, #3c7500);
-  background: -o-linear-gradient(#94c840, #3c7500);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px inset, rgba(0, 0, 0, 0.05) 0 1px 2px;
 }
 
 /* line 9, ../sass/styles.scss */

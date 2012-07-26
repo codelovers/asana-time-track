@@ -174,7 +174,7 @@
                     percent = (newHours*60*1000 + newMinutes * 1000) / percent;
                     
                     // change progress state
-                    if(percent >= 90 && percent < 100){
+                    if(percent >= 80 && percent < 100){
                         locateProgressWrapper.removeClass('progress-success');
                         locateProgressWrapper.addClass('progress-warning');
                     } else if (percent >= 100){
@@ -185,7 +185,7 @@
                     locateProgressBar.css('width', percent + '%');
                     
                 // render new worked time into left row "Worked Time"
-                locateWorkedTimeWrapper.html(newHours + 'h ' + newMinutes + 'm');
+                locateWorkedTimeWrapper.find('.myLabel').html(newHours + 'h ' + newMinutes + 'm');
                 locateWorkedTimeWrapper.attr('data-worked-hours', newHours);
                 locateWorkedTimeWrapper.attr('data-worked-minutes', newMinutes);
                 // save interval
