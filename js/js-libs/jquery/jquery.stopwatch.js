@@ -149,11 +149,11 @@
                 var locateProgressBar = locateProgress.find('.bar');
                 var locateWorkedTimeWrapper = locateClickedTd.prev().prev('.worked_time');
 
-                // guess & worked time
+                // estimated & worked time
                 var getWorkedHours = locateWorkedTimeWrapper.data('worked-hours');
                 var getWorkedMinutes = locateWorkedTimeWrapper.data('worked-minutes');
-                var getGuessHours = locateWorkedTimeWrapper.data('guess-hours');
-                var getGuessMinutes = locateWorkedTimeWrapper.data('guess-minutes');
+                var getEstimatedHours = locateWorkedTimeWrapper.data('estimated-hours');
+                var getEstimatedMinutes = locateWorkedTimeWrapper.data('estimated-minutes');
                 
                 // task informations
                 var getTaskId = locateWorkedTimeWrapper.data('task-id');
@@ -169,7 +169,7 @@
                 var newHours = (rest < 0 ) ? (getWorkedHours+currentHours) : (getWorkedHours+currentHours+1);
                                 
                 // calculate progress
-                var percent = (getGuessHours*60*1000 + getGuessMinutes * 1000) / 100;
+                var percent = (getEstimatedHours*60*1000 + getEstimatedMinutes * 1000) / 100;
                     percent = (newHours*60*1000 + newMinutes * 1000) / percent;
                     
                     // change progress state
@@ -195,7 +195,7 @@
                     $.ajax({
                       type: "GET",
                       url: "request.php",
-                      data: "apiKey=" + apiKey + "&updateId=" + getTaskId + "&guessHours=" + getGuessHours + "&guessMinutes=" + getGuessMinutes + "&workedHours=" + newHours + "&workedMinutes=" + newMinutes + "&taskName=" + getTaskName,
+                      data: "apiKey=" + apiKey + "&updateId=" + getTaskId + "&estimatedHours=" + getEstimatedHours + "&estimatedMinutes=" + getEstimatedMinutes + "&workedHours=" + newHours + "&workedMinutes=" + newMinutes + "&taskName=" + getTaskName,
                       success: function( result ) {
                          //console.log('auto saved');
                       },

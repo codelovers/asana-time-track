@@ -51,19 +51,19 @@ if($asana->getResponseCode() == '200' && $result != '' ){
 
         foreach($result->data as $task){
              
-             $value = $asana->getGuessAndWorkedTime($task->name);
+             $value = $asana->getEstimatedAndWorkedTime($task->name);
              $taskState = $asana->getOneTask($task->id);
 
              $taskName = $value['taskName'];
-             $guessHours = (!empty($value['guessHours'])) ? $value['guessHours'].'h' : '0h';
-             $guessMinutes = (!empty($value['guessMinutes'])) ? $value['guessMinutes'].'m' : '0m';
+             $estimatedHours = (!empty($value['estimatedHours'])) ? $value['estimatedHours'].'h' : '0h';
+             $estimatedMinutes = (!empty($value['estimatedMinutes'])) ? $value['estimatedMinutes'].'m' : '0m';
              $workedHours = (!empty($value['workedHours'])) ? $value['workedHours'].'h' : '0h';
              $workedMinutes = (!empty($value['workedMinutes'])) ? $value['workedMinutes'].'m' : '0m';
              $workedTime = $value['workedTimeSec'];
              
              // progress bar
-            $progressBarPercent = ($guessHours*60*1000 + $guessMinutes * 1000) / 100;
-            $progressBarPercent = ($workedHours*60*1000 + $workedMinutes * 1000) / $progressBarPercent;
+            $progressBarPercent = ($estimatedHours*60*1000 + $estimatedMinutes * 1000) / 100;
+            $progressBarPercent = ($estimatedHours*60*1000 + $estimatedMinutes * 1000) / $progressBarPercent;
              
              $progressState = ($progressBarPercent < 90) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
              
@@ -74,8 +74,8 @@ if($asana->getResponseCode() == '200' && $result != '' ){
                 echo '<tr>'
                     .'<td>'. $taskState['projects']["name"] .'</td>'
                     .'<td>'. $taskName  .'</td>'
-                    .'<td>'. $guessHours .' '. $guessMinutes .'</td>'
-                    .'<td class="worked_time" data-guess-hours="'.$value['guessHours'].'" data-guess-minutes="'.$value['guessMinutes'].'" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'. $workedHours .' '. $workedMinutes .'</td>'
+                    .'<td>'. $estimatedHours .' '. $estimatedMinutes .'</td>'
+                    .'<td class="worked_time" data-estimated-hours="'.$value['estimatedHours'].'" data-estimated-minutes="'.$value['estimatedMinutes'].'" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'. $workedHours .' '. $workedMinutes .'</td>'
                     .'<td><div class="progress ' . $progressState . ' progress-striped">
                             <div class="bar" style="width: ' . $progressBarPercent . '%;"></div>
                         </div>
@@ -102,11 +102,11 @@ if($asana->getResponseCode() == '200' && $result != '' ){
         
         $workedHours = $_GET['workedHours'];
         $workedMinutes = $_GET['workedMinutes'];
-        $guessHours = $_GET['guessHours'];
-        $guessMinutes = $_GET['guessMinutes'];
+        $estimatedHours = $_GET['estimatedHours'];
+        $estimatedMinutes = $_GET['estimatedMinutes'];
         $currentTaskName = $_GET['taskName'];
         
-        $asana->updateTask($updateId, $workedHours, $workedMinutes, $guessHours, $guessMinutes,  $currentTaskName);
+        $asana->updateTask($updateId, $workedHours, $workedMinutes, $estimatedHours, $estimatedMinutes,  $currentTaskName);
     }
     
 

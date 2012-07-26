@@ -84,27 +84,27 @@ class AsanaApi {
         return $array;
     }
 
-    public function updateTask($taskId, $workedHours, $workedMinutes, $guessHours, $guessMinutes, $taskName){
+    public function updateTask($taskId, $workedHours, $workedMinutes, $estimatedHours, $estimatedMinutes, $taskName){
 
-        $data = array( "name" => $taskName ." [GT: " . $guessHours . "h " . $guessMinutes . "m] [WT: " . $workedHours . "h " . $workedMinutes . "m]");        
+        $data = array( "name" => $taskName ." [GT: " . $estimatedHours . "h " . $estimatedMinutes . "m] [WT: " . $workedHours . "h " . $workedMinutes . "m]");        
         $data = array("data" => $data);
         $data = json_encode($data);
         
         return $this->apiRequest($this->taskUri.'/'.$taskId , $data, PUT_METHOD);
     }
     
-    public function getGuessAndWorkedTime($data){
+    public function getEstimatedAndWorkedTime($data){
         $data = explode('[', $data);  
         $data[1] = str_replace('GT:', '', $data[1]);
         $data[2] = str_replace('WT:', '', $data[2]);
-        $data[1] = trim(substr($data[1], 0, -1)); // guess time
+        $data[1] = trim(substr($data[1], 0, -1)); // estimated time
         $data[2] = trim(substr($data[2], 0, -1)); // worked time
         
-        // guess time
+        // estimated time
         $explodeString = explode('h', $data[1]);
-        $guessTimeHours = ($explodeString[0] != '') ? $explodeString[0] : 0;
-        $guessTimeMinutes = trim(substr($explodeString[1], 0, -2));
-        $guessTimeMinutes = ($guessTimeMinutes != '') ? $guessTimeMinutes : 0;
+        $estimatedTimeHours = ($explodeString[0] != '') ? $explodeString[0] : 0;
+        $estimatedTimeMinutes = trim(substr($explodeString[1], 0, -2));
+        $estimatedTimeMinutes = ($estimatedTimeMinutes != '') ? $estimatedTimeMinutes : 0;
 
         // worked time
         $explodeString = explode('h', $data[2]);
@@ -117,8 +117,8 @@ class AsanaApi {
         $workedTime += $workedTimeMinutes * 60 * 1000;
         
         $array = array ( 'taskName' => $data[0],
-                         'guessHours' => $guessTimeHours,
-                         'guessMinutes' => $guessTimeMinutes,
+                         'estimatedHours' => $estimatedTimeHours,
+                         'estimatedMinutes' => $estimatedTimeMinutes,
                          'workedHours' => $workedTimeHours,
                          'workedMinutes' => $workedTimeMinutes,
                          'workedTimeSec' => $workedTime
