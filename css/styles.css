@@ -7405,14 +7405,411 @@ a.badge:hover {
     overflow: visible !important;
   }
 }
-/* line 8, ../sass/styles.scss */
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dw {
+  min-width: 170px;
+  padding: 0 10px;
+  position: absolute;
+  top: 5%;
+  left: 0;
+  z-index: 1001;
+  color: #000;
+  font-family: arial,verdana,sans-serif;
+  font-size: 12px;
+  text-shadow: none;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwi {
+  position: static;
+  margin: 5px;
+  display: inline-block;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwwr {
+  zoom: 1;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwo {
+  width: 100%;
+  background: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  opacity: .7;
+  filter: Alpha(Opacity=70);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwc {
+  float: left;
+  margin: 0 2px 5px 2px;
+  padding-top: 30px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwcc {
+  clear: both;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwl {
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+  white-space: nowrap;
+  position: absolute;
+  top: -30px;
+  width: 100%;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwv {
+  padding: 10px 0;
+  border-bottom: 1px solid #000;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwrc {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwwc {
+  margin: 0;
+  padding: 0 2px;
+  position: relative;
+  background: #000;
+  zoom: 1;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwwl {
+  margin: 4px 2px;
+  position: relative;
+  background: #888;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, black), color-stop(0.35, #333333), color-stop(0.5, #888888), color-stop(0.65, #333333), color-stop(1, black));
+  background: -moz-linear-gradient(black 0, #333333 35%, #888888 50%, #333333 65%, black 100%);
+  background: -ms-linear-gradient(black 0, #333333 35%, #888888 50%, #333333 65%, black 100%);
+  background: -o-linear-gradient(black 0, #333333 35%, #888888 50%, #333333 65%, black 100%);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dww {
+  margin: 0 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwsc .dww {
+  color: #fff;
+  background: #444;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, black), color-stop(0.45, #444444), color-stop(0.55, #444444), color-stop(1, black));
+  background: -moz-linear-gradient(black 0, #444444 45%, #444444 55%, black 100%);
+  background: -ms-linear-gradient(black 0, #444444 45%, #444444 55%, black 100%);
+  background: -o-linear-gradient(black 0, #444444 45%, #444444 55%, black 100%);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dww ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dww li {
+  list-style: none;
+  margin: 0;
+  padding: 0 5px;
+  display: block;
+  text-align: center;
+  line-height: 40px;
+  font-size: 26px;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px #000;
+  opacity: .3;
+  filter: Alpha(Opacity=30);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dww li.dw-v {
+  opacity: 1;
+  filter: Alpha(Opacity=100);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dww li.dw-h {
+  display: none;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwwb {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  text-align: center;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwwbp {
+  top: 0;
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  font-size: 40px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwwbm {
+  bottom: 0;
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwpm .dwwc {
+  background: transparent;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwpm .dww {
+  margin: -1px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwpm .dww li {
+  text-shadow: none;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwpm .dwwol {
+  display: none;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwwo {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, black), color-stop(0.52, rgba(44, 44, 44, 0)), color-stop(0.48, rgba(44, 44, 44, 0)), color-stop(1, black));
+  background: -moz-linear-gradient(black 0, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
+  background: -ms-linear-gradient(black 0, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
+  background: -o-linear-gradient(black 0, rgba(44, 44, 44, 0) 52%, rgba(44, 44, 44, 0) 48%, black 100%);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwwol {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  margin-top: -1px;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #555;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbg .dwb {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 15px;
+  margin: 0 2px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px black;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  background: #000;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, black), color-stop(0.5, #6e6e6e));
+  background: -moz-linear-gradient(#6e6e6e 50%, black 50%);
+  background: -ms-linear-gradient(#6e6e6e 50%, black 50%);
+  background: -o-linear-gradient(#6e6e6e 50%, black 50%);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbc {
+  padding: 5px 0;
+  text-align: center;
+  clear: both;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbw {
+  display: inline-block;
+  width: 50%;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwhl {
+  padding-top: 10px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwhl .dwl {
+  display: none;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbg {
+  background: #fff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbg .dwpm .dww {
+  color: #000;
+  background: #fff;
+  border: 1px solid #AAA;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbg .dwwb {
+  background: #ccc;
+  color: #888;
+  text-shadow: 0 -1px 1px #333333;
+  box-shadow: 0 0 5px #333;
+  -webkit-box-shadow: 0 0 5px #333;
+  -moz-box-shadow: 0 0 5px #333;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbg .dwwbp {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #bdbdbd), color-stop(1, #f7f7f7));
+  background: -moz-linear-gradient(#f7f7f7, #bdbdbd);
+  background: -ms-linear-gradient(#f7f7f7, #bdbdbd);
+  background: -o-linear-gradient(#f7f7f7, #bdbdbd);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbg .dwwbm {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f7f7f7), color-stop(1, #bdbdbd));
+  background: -moz-linear-gradient(#bdbdbd, #f7f7f7);
+  background: -ms-linear-gradient(#bdbdbd, #f7f7f7);
+  background: -o-linear-gradient(#bdbdbd, #f7f7f7);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbg .dwb-a {
+  background: #3c7500;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, #3c7500), color-stop(0.5, #94c840));
+  background: -moz-linear-gradient(#94c840 50%, #3c7500 50%);
+  background: -ms-linear-gradient(#94c840 50%, #3c7500 50%);
+  background: -o-linear-gradient(#94c840 50%, #3c7500 50%);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.dwbg .dwwl .dwb-a {
+  background: #3c7500;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c7500), color-stop(1, #94c840));
+  background: -moz-linear-gradient(#94c840, #3c7500);
+  background: -ms-linear-gradient(#94c840, #3c7500);
+  background: -o-linear-gradient(#94c840, #3c7500);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwo {
+  background: 0;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dw {
+  padding: 6px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwv {
+  padding: .7em 15px .7em 15px;
+  border: 0;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwwr {
+  border: 0;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwpm .dwwo {
+  background: 0;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwc {
+  margin: 0;
+  padding: 30px 5px 5px 5px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwhl {
+  padding: 5px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwwb {
+  margin: 0;
+  border: 0;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwwb span {
+  padding: 0;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwwbp .ui-btn-inner {
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwwbm .ui-btn-inner {
+  -webkit-border-radius: 0 0 3px 3px;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.jqm .dwwbp span {
+  font-weight: normal;
+}
+
+/* line 9, ../sass/styles.scss */
 ::-moz-selection {
   background: gray;
   color: #fff;
   text-shadow: none;
 }
 
-/* line 9, ../sass/styles.scss */
+/* line 10, ../sass/styles.scss */
 ::selection {
   background: gray;
   color: #fff;
@@ -7429,89 +7826,89 @@ a.badge:hover {
     COMMON STYLES
   ------------------------------------------------------------------------------
 /* Gernal */
-/* line 35, ../sass/styles.scss */
+/* line 36, ../sass/styles.scss */
 .container .workspace_caption {
   display: none;
   margin: 0 0 30px 0;
   float: left;
 }
-/* line 41, ../sass/styles.scss */
+/* line 42, ../sass/styles.scss */
 .container #loader-wrapper {
   margin: 0.3em 0 0 0;
 }
-/* line 43, ../sass/styles.scss */
+/* line 44, ../sass/styles.scss */
 .container #loader-wrapper .ajax_img, .container #loader-wrapper span {
   display: none;
   margin-left: 1em;
 }
-/* line 47, ../sass/styles.scss */
+/* line 48, ../sass/styles.scss */
 .container #loader-wrapper #workspace-refresh {
   display: none;
   margin-left: 1em;
 }
 
-/* line 56, ../sass/styles.scss */
+/* line 57, ../sass/styles.scss */
 .att_track_table tbody tr > td {
   vertical-align: middle;
 }
-/* line 59, ../sass/styles.scss */
+/* line 60, ../sass/styles.scss */
 .att_track_table tbody tr .progress {
   margin-bottom: 0;
 }
 
-/* line 66, ../sass/styles.scss */
+/* line 67, ../sass/styles.scss */
 #start-modal #api-key-form .controls {
   margin-left: 0px;
 }
-/* line 69, ../sass/styles.scss */
+/* line 70, ../sass/styles.scss */
 #start-modal .ajax_img {
   display: none;
 }
-/* line 72, ../sass/styles.scss */
+/* line 73, ../sass/styles.scss */
 #start-modal #api-key-edit, #start-modal #api-key-delete, #start-modal #api-key-refresh {
   display: none;
 }
-/* line 76, ../sass/styles.scss */
+/* line 77, ../sass/styles.scss */
 #start-modal #workspace-container {
   display: none;
 }
-/* line 78, ../sass/styles.scss */
+/* line 79, ../sass/styles.scss */
 #start-modal #workspace-container .workspace {
   text-align: center;
   cursor: pointer;
   overflow: hidden;
 }
-/* line 83, ../sass/styles.scss */
+/* line 84, ../sass/styles.scss */
 #start-modal #workspace-container .workspace:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 20px inset;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 20px inset;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 20px inset;
 }
 
-/* line 91, ../sass/styles.scss */
+/* line 92, ../sass/styles.scss */
 #track-table {
   clear: both;
   display: none;
 }
-/* line 95, ../sass/styles.scss */
+/* line 96, ../sass/styles.scss */
 #track-table .my_timer .time {
   line-height: 28px;
 }
-/* line 98, ../sass/styles.scss */
+/* line 99, ../sass/styles.scss */
 #track-table .my_timer > * {
   float: left;
   margin: 0 2em 0 0;
 }
-/* line 103, ../sass/styles.scss */
+/* line 104, ../sass/styles.scss */
 #track-table .my_timer button .start_stop_text {
   margin-left: 4px;
 }
-/* line 108, ../sass/styles.scss */
+/* line 109, ../sass/styles.scss */
 #track-table .worked_time_line {
   background-color: #f8f8f8;
   font-weight: bold;
 }
-/* line 113, ../sass/styles.scss */
+/* line 114, ../sass/styles.scss */
 #track-table .text_align.right {
   text-align: right;
 }
