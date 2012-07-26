@@ -115,7 +115,7 @@ $(function(){
         modalBackdrop.fadeIn();
     });
     
-    $('#start-modal').on('click', $('#start-modal').children('.modal-footer').find('.btn'), function (){
+    $('#start-modal').on('click', '#start-modal > .modal-footer .btn', function (){
         modalBackdrop.fadeOut();
     });
     
