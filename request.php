@@ -62,12 +62,8 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              $workedTime = $value['workedTimeSec'];
              
              // progress bar
-             if(($value['guessHours']+$value['guessMinutes']) > ($value['workedHours']+$value['workedMinutes'])){
-                $progressBarPercent = ($guessHours*60*1000 + $guessMinutes * 1000) / 100;
-                $progressBarPercent = ($workedHours*60*1000 + $workedMinutes * 1000) / $progressBarPercent;
-             } else{
-                $progressBarPercent = 100;
-             }
+            $progressBarPercent = ($guessHours*60*1000 + $guessMinutes * 1000) / 100;
+            $progressBarPercent = ($workedHours*60*1000 + $workedMinutes * 1000) / $progressBarPercent;
              
              $progressState = ($progressBarPercent < 90) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
              
