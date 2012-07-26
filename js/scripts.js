@@ -11,9 +11,9 @@ $(function(){
     var modalBackdrop = $('.modal-backdrop');
     var activeWorkspaceId = null;
 
-    $('.my_timer .btn').live('click', function(event){
+    $('.my_timer .start-stop').live('click', function(event){
         var locateClickedElement = $(this);
-        var locateAllButtons = $('.my_timer .btn');
+        var locateAllButtons = $('.my_timer .start-stop');
         
         // no more activity is possible, 
         // only one task can be active

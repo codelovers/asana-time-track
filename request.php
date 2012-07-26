@@ -75,7 +75,6 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              if($taskState['completed'] || $taskState['assignee'] != $userId) {
                 continue;
              } else {
-                //echo '- <a href="?apiKey='. $apiKey . '&projectId=' . $projectId . '&updateId=' . $task->id . '" target="_self" data-guess-hours="'. $value['guessHours'] .'" data-guess-minutes="'. $value['guessMinutes'] .'" data-worked-hours="'. $value['workedHours'] .'" data-worked-minutes="'. $value['workedMinutes'] .'">' . $task->name . '</a><br />';
                 echo '<tr>'
                     .'<td>'. $taskState['projects']["name"] .'</td>'
                     .'<td>'. $taskName  .'</td>'
