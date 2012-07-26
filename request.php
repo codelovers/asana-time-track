@@ -72,10 +72,14 @@ if($asana->getResponseCode() == '200' && $result != '' ){
                 continue;
              } else {
                 echo '<tr>'
-                    .'<td>'. $taskState['projects']["name"] .'</td>'
+                    .'<td>'. $taskState['projects']['name'] .'</td>'
                     .'<td>'. $taskName  .'</td>'
-                    .'<td>'. $estimatedHours .' '. $estimatedMinutes .'</td>'
-                    .'<td class="worked_time" data-estimated-hours="'.$value['estimatedHours'].'" data-estimated-minutes="'.$value['estimatedMinutes'].'" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'. $workedHours .' '. $workedMinutes .'</td>'
+                    .'<td class="estimated_time" data-estimated-hours="'.$value['estimatedHours'].'" data-estimated-minutes="'.$value['estimatedMinutes'].'">'. $estimatedHours .' '. $estimatedMinutes
+                        . '<input class="date-picker-et" name="date-picker-et"/>'
+                    . '</td>'
+                    .'<td class="worked_time" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'. $workedHours .' '. $workedMinutes
+                        . '<input class="date-picker-wt" name="date-picker-wt"/>'
+                    . '</td>'
                     .'<td><div class="progress ' . $progressState . ' progress-striped">
                             <div class="bar" style="width: ' . $progressBarPercent . '%;"></div>
                         </div>

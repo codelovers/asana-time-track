@@ -148,12 +148,13 @@
                 var locateProgressWrapper = locateProgress.find('.progress');
                 var locateProgressBar = locateProgress.find('.bar');
                 var locateWorkedTimeWrapper = locateClickedTd.prev().prev('.worked_time');
+                var locateEstimatedTimeWrapper = locateClickedTd.siblings('.estimated_time');
 
                 // estimated & worked time
                 var getWorkedHours = locateWorkedTimeWrapper.data('worked-hours');
                 var getWorkedMinutes = locateWorkedTimeWrapper.data('worked-minutes');
-                var getEstimatedHours = locateWorkedTimeWrapper.data('estimated-hours');
-                var getEstimatedMinutes = locateWorkedTimeWrapper.data('estimated-minutes');
+                var getEstimatedHours = locateEstimatedTimeWrapper.data('estimated-hours');
+                var getEstimatedMinutes = locateEstimatedTimeWrapper.data('estimated-minutes');
                 
                 // task informations
                 var getTaskId = locateWorkedTimeWrapper.data('task-id');
@@ -167,7 +168,7 @@
                 var rest = newMinutes-60;
                     newMinutes = (rest < 0 ) ? newMinutes : rest;
                 var newHours = (rest < 0 ) ? (getWorkedHours+currentHours) : (getWorkedHours+currentHours+1);
-                                
+
                 // calculate progress
                 var percent = (getEstimatedHours*60*1000 + getEstimatedMinutes * 1000) / 100;
                     percent = (newHours*60*1000 + newMinutes * 1000) / percent;
@@ -191,7 +192,6 @@
                 --saveInterval;
                 
                 if(saveInterval == 0){
-                          
                     $.ajax({
                       type: "GET",
                       url: "request.php",
@@ -204,7 +204,7 @@
                       }
                     });
                           
-                   // set interval again                    
+                   // set interval again
                    saveInterval = 1; 
                 }
                 

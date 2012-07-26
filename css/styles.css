@@ -7548,7 +7548,7 @@ a.badge:hover {
 
 /* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
 .dww li.dw-h {
-  display: none;
+  visibility: hidden;
 }
 
 /* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
@@ -7736,70 +7736,64 @@ a.badge:hover {
 }
 
 /* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwo {
-  background: 0;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dw {
-  padding: 6px;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwv {
-  padding: .7em 15px .7em 15px;
-  border: 0;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwwr {
-  border: 0;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwpm .dwwo {
-  background: 0;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwc {
-  margin: 0;
-  padding: 30px 5px 5px 5px;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwhl {
-  padding: 5px;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwwb {
-  margin: 0;
-  border: 0;
-}
-
-/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwwb span {
+.sense-ui .dw {
   padding: 0;
+  background: #333;
+  border: 2px solid #fff;
+  color: #fff;
 }
 
 /* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwwbp .ui-btn-inner {
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
+.sense-ui .dwv {
+  padding: 5px 10px;
+  border-bottom: 1px solid #666;
+  text-align: left;
 }
 
 /* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwwbm .ui-btn-inner {
-  -webkit-border-radius: 0 0 3px 3px;
-  -moz-border-radius: 0 0 3px 3px;
-  border-radius: 0 0 3px 3px;
+.sense-ui .dwwc {
+  background: #333;
 }
 
 /* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
-.jqm .dwwbp span {
-  font-weight: normal;
+.sense-ui .dww {
+  margin: 0 2px;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.sense-ui .dwpm .dww {
+  margin: 0;
+  border: 0;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.sense-ui .dwbc {
+  padding: 5px 1px;
+  background: #000;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, black), color-stop(0.5, #666666));
+  background: -moz-linear-gradient(#666666 50%, black 50%);
+  background: -ms-linear-gradient(#666666 50%, black 50%);
+  background: -o-linear-gradient(#666666 50%, black 50%);
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.sense-ui .dwb {
+  margin: 0 5px;
+  background: #000;
+  border: 1px solid #333;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, black), color-stop(1, #444444));
+  background: -moz-linear-gradient(#444444, black);
+  background: -ms-linear-gradient(#444444, black);
+  background: -o-linear-gradient(#444444, black);
+  box-shadow: inset 0 0 5px #000;
+}
+
+/* line 1, ../sass/_mobiscroll-2.0.custom.min.scss */
+.sense-ui .dwb-a {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3c7500), color-stop(1, #94c840));
+  background: -moz-linear-gradient(#94c840, #3c7500);
+  background: -ms-linear-gradient(#94c840, #3c7500);
+  background: -o-linear-gradient(#94c840, #3c7500);
 }
 
 /* line 9, ../sass/styles.scss */
@@ -7911,4 +7905,14 @@ a.badge:hover {
 /* line 114, ../sass/styles.scss */
 #track-table .text_align.right {
   text-align: right;
+}
+
+/* line 122, ../sass/styles.scss */
+.date-picker-et, .date-picker-wt {
+  display: none;
+}
+
+/* line 126, ../sass/styles.scss */
+.estimated_time, .worked_time {
+  cursor: pointer;
 }

@@ -114,6 +114,13 @@ $clGreen: #bdca07;
             text-align:right;
         }
     }
+}
 
-    
+// Timepicker
+
+.date-picker-et, .date-picker-wt {    display: none;
+}
+
+.estimated_time, .worked_time {
+    cursor: pointer;
 }

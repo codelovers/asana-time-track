@@ -86,7 +86,7 @@ class AsanaApi {
 
     public function updateTask($taskId, $workedHours, $workedMinutes, $estimatedHours, $estimatedMinutes, $taskName){
 
-        $data = array( "name" => $taskName ." [GT: " . $estimatedHours . "h " . $estimatedMinutes . "m] [WT: " . $workedHours . "h " . $workedMinutes . "m]");        
+        $data = array( "name" => $taskName ." [ET: " . $estimatedHours . "h " . $estimatedMinutes . "m] [WT: " . $workedHours . "h " . $workedMinutes . "m]");        
         $data = array("data" => $data);
         $data = json_encode($data);
         
@@ -95,7 +95,7 @@ class AsanaApi {
     
     public function getEstimatedAndWorkedTime($data){
         $data = explode('[', $data);  
-        $data[1] = str_replace('GT:', '', $data[1]);
+        $data[1] = str_replace('ET:', '', $data[1]);
         $data[2] = str_replace('WT:', '', $data[2]);
         $data[1] = trim(substr($data[1], 0, -1)); // estimated time
         $data[2] = trim(substr($data[2], 0, -1)); // worked time

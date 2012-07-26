@@ -10,8 +10,8 @@ $(function(){
     var workspaceRefresh = $('.container').children('#loader-wrapper').find('#workspace-refresh');
     var modalBackdrop = $('.modal-backdrop');
     var activeWorkspaceId = null;
-
-    $('.my_timer .btn').live('click', function(event){
+    
+    $("#track-table").on('click', 'td.my_timer > .btn', function(event){
         var locateClickedElement = $(this);
         var locateAllButtons = $('.my_timer .btn');
         
@@ -48,7 +48,6 @@ $(function(){
     });
     
     $('.modal-backdrop').on('click', function(e){
-        console.log(e.target);
         return false;
     });
     
@@ -145,6 +144,7 @@ $(function(){
               $('#track-table').show().find('tbody').html(result);
               workspaceLoader.fadeOut();
               workspaceRefresh.fadeIn();
+              initTimepicker();
             },
           error : function( msg ) {
               $('#track-table').html(msg.responseText).fadeIn();
@@ -153,6 +153,90 @@ $(function(){
             }
         });
     }
-      
+    
+    // Edit Time 
+    function initTimepicker() {
+        var hourWheel = {};
+        for (var i=0;i<=100;i++) {
+            hourWheel[""+i] = i;
+        }
+        var minutesWheel = {};
+        for (var i=0;i<=60;i++) {
+            minutesWheel[""+i] = i;
+        }
+        $('.date-picker-et').scroller({
+            theme: 'default',
+            display: 'modal',
+            mode: 'mixed',
+            width: 100,
+            wheels: [{ 'Hours': hourWheel, 'Minutes': { '0': 0, '15': 15 , '30' : 30, '45' : 45 }}],
+            headerText: false,
+            rows: 5,
+            onSelect: onScrollerSelect
+        });
+        
+        $('.date-picker-wt').scroller({
+            theme: 'default',
+            display: 'modal',
+            mode: 'mixed',
+            width: 100,
+            wheels: [{ 'Hours': hourWheel, 'Minutes': minutesWheel}],
+            headerText: false,
+            rows: 5,
+            onSelect: onScrollerSelect
+        });
+    }
+    
+    function onScrollerSelect(valueText) {
+        console.log($(this));
+        var dataEstimated = 'test';
+        var dataWorked = 'blaa';
+        var value = valueText.split(" ");
+        if($(this).parents('.estimated_time')){
+            $(this).parents().attr('data-estimated-hours', value[0]);
+            $(this).parents().attr('data-estimated-minutes', value[1]);
+            $(this).parents('.estimated_time').html(value[0] + 'h ' + value[1] + 'm');
+            dataEstimated = $(this).parents('.estimated_time').data();
+            dataWorked = $(this).parents('.estimated_time').siblings('.worked_time').data();
+            console.log(dataEstimated, dataWorked);
+        } else {
+            $(this).parents().attr('data-worked-hours', value[0]);
+            $(this).parents().attr('data-worked-minutes', value[1]);
+            $(this).parents('.worked_time').html(value[0] + 'h ' + value[1] + 'm');
+            dataEstimated = $(this).parents('.worked_time').siblings('.estimated_time').data();
+            dataWorked = $(this).parents('.worked_time').data();
+        }
+        //changeTasksAjaxCall()
+    }
+    
+    function changeTasksAjaxCall(getTaskId, getEstimatedHours, getEstimatedMinutes, newHours, newMinutes, getTaskName) {
+        $.ajax({
+              type: "GET",
+              url: "request.php",
+              data: "apiKey=" + apiKeyCookie + "&updateId=" + getTaskId + "&estimatedHours=" + getEstimatedHours + "&estimatedMinutes=" + getEstimatedMinutes + "&workedHours=" + newHours + "&workedMinutes=" + newMinutes + "&taskName=" + getTaskName,
+              success: function( result ) {
+                 //console.log('auto saved');
+              },
+              error : function( msg ) {
+                 //console.log('something went wrong...');
+              }
+        });
+    }
+    
+    $("#track-table").on('click', 'td.estimated_time', function(event){
+        var hours = $(this).data('estimated-hours');
+        var minutes = $(this).data('estimated-minutes');
+        var input = $(this).children('input');
+        input.scroller('setValue', [hours, minutes], true);
+        input.scroller('show');
+    });
+    
+    $("#track-table").on('click', 'td.worked_time', function(event){
+        var hours = $(this).data('worked-hours');
+        var minutes = $(this).data('worked-minutes');
+        var input = $(this).children('input');
+        input.scroller('setValue', [hours, minutes], true);
+        input.scroller('show');
+    });
     
 });
