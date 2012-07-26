@@ -185,7 +185,8 @@
                     
                 // render new worked time into left row "Worked Time"
                 locateWorkedTimeWrapper.html(newHours + 'h ' + newMinutes + 'm');
-                
+                locateWorkedTimeWrapper.attr('data-worked-hours', newHours);
+                locateWorkedTimeWrapper.attr('data-worked-minutes', newMinutes);
                 // save interval
                 --saveInterval;
                 
