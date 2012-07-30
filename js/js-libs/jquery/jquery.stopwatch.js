@@ -185,7 +185,7 @@
                     locateProgressBar.css('width', percent + '%');
                     
                 // render new worked time into left row "Worked Time"
-                locateWorkedTimeWrapper.find('.myLabel').html(newHours + 'h ' + newMinutes + 'm');
+                locateWorkedTimeWrapper.find('.my_label').html(newHours + 'h ' + newMinutes + 'm');
                 locateWorkedTimeWrapper.attr('data-worked-hours', newHours);
                 locateWorkedTimeWrapper.attr('data-worked-minutes', newMinutes);
                 // save interval
