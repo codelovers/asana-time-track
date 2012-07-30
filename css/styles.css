@@ -7857,41 +7857,45 @@ a.badge:hover {
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 1px 20px inset;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 20px inset;
 }
+/* line 91, ../sass/styles.scss */
+#start-modal .hint_api_key {
+  margin: 10px 0 0 5px;
+}
 
-/* line 92, ../sass/styles.scss */
+/* line 97, ../sass/styles.scss */
 #track-table {
   clear: both;
   display: none;
 }
-/* line 96, ../sass/styles.scss */
+/* line 101, ../sass/styles.scss */
 #track-table .my_timer .time {
   line-height: 28px;
 }
-/* line 99, ../sass/styles.scss */
+/* line 104, ../sass/styles.scss */
 #track-table .my_timer > * {
   float: left;
   margin: 0 2em 0 0;
 }
-/* line 104, ../sass/styles.scss */
+/* line 109, ../sass/styles.scss */
 #track-table .my_timer button .start_stop_text {
   margin-left: 4px;
 }
-/* line 109, ../sass/styles.scss */
+/* line 114, ../sass/styles.scss */
 #track-table .worked_time_line {
   background-color: #f8f8f8;
   font-weight: bold;
 }
-/* line 114, ../sass/styles.scss */
+/* line 119, ../sass/styles.scss */
 #track-table .text_align.right {
   text-align: right;
 }
 
-/* line 122, ../sass/styles.scss */
+/* line 127, ../sass/styles.scss */
 .date-picker-et, .date-picker-wt {
   display: none;
 }
 
-/* line 126, ../sass/styles.scss */
+/* line 131, ../sass/styles.scss */
 .estimated_time, .worked_time {
   cursor: pointer;
 }
