@@ -268,3 +268,17 @@ footer {
 .tip {
     font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.spacing_top {
+    margin: 16px 0 0 0;
+}
+
+.headline {
+    padding-bottom: 5px;
+    border-bottom: 2px solid lightgray;
+    margin: 0;
+}
+
+.fb-like {
+    margin: 0 0 0 10px;
+}
