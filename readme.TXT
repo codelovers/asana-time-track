@@ -8,4 +8,4 @@ Maybe this changes in the future, but right now there is a difference between ar
 and your personal task view.
 
 Please remember the Asana Api is not as fast as a Porsche, so take your time when the tool fetches
-the data from the servers.
+the data from the servers.  
