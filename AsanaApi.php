@@ -11,21 +11,19 @@
 
 class AsanaApi {
 
-    /////////////////////////////////////////////////
+    // ##############################################################################################
     // CLASS VARIABLES & CONSTANTS
-    /////////////////////////////////////////////////
-    
+    // ##############################################################################################
     // variables
     private $apiKey, $uri, $workspaceUri, $responseCode;
 
     // set constants
-    const POST_METHOD = 1;
     const PUT_METHOD  = 2;
-    const GET_METHOD  = 3;    
+    const GET_METHOD  = 3;
     
-    /////////////////////////////////////////////////
+    // ##############################################################################################
     // CONSTRUCTOR
-    /////////////////////////////////////////////////    
+    // ##############################################################################################
     public function __construct($apiKey){
         
         // : away, append it
@@ -40,16 +38,11 @@ class AsanaApi {
         $this->projectUri = $this->uri."projects"; 
         $this->taskUri = $this->uri."tasks";
         $this->userUri = $this->uri."users";
-        // https://api.asana.com/api/1.0/workspaces/541558489761
-        // https://api.asana.com/api/1.0/workspaces/541558489761/projects/
-        // https://api.asana.com/api/1.0/projects/565454757638
-        // https://api.asana.com/api/1.0/projects/565454757638/tasks
-        // https://api.asana.com/api/1.0/tasks 
     }
 
-    /////////////////////////////////////////////////
+    // ##############################################################################################
     // SETTER & GETTER & HELPER METHODS
-    /////////////////////////////////////////////////
+    // ##############################################################################################
     public function getUserId(){
         $resultJson = json_decode($this->apiRequest($this->userUri.'/me'));
         return $resultJson->data->id;
@@ -61,10 +54,6 @@ class AsanaApi {
     
     public function getWorkspaces(){
         return $this->apiRequest($this->workspaceUri);
-    }
-    
-    public function getProjects($workspaceId){
-        return $this->apiRequest($this->workspaceUri.'/'.$workspaceId.'/projects');
     }
     
     public function getTasks($workspaceId){
@@ -128,9 +117,9 @@ class AsanaApi {
         
     }
     
-    /////////////////////////////////////////////////
+    // ##############################################################################################
     // ASK ASANA API AND RETURN DATA
-    /////////////////////////////////////////////////
+    // ##############################################################################################
     private function apiRequest($url, $givenData = null, $method = GET_METHOD){
 
         // ask asana api and return data
@@ -143,7 +132,6 @@ class AsanaApi {
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json")); // Send as JSON
 
-        //    
         if($method == PUT_METHOD){
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
             curl_setopt($curl, CURLOPT_POSTFIELDS, $givenData);

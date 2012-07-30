@@ -1,4 +1,7 @@
-// forked by: codelovers
+/* forked and edited by: codelovers
+ * original author: robcowie
+ * github: https://github.com/robcowie/jquery-stopwatch
+ */
 
 (function( $ ){
 

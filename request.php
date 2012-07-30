@@ -20,35 +20,33 @@ $updateId = $_GET['updateId'];
 // initalize
 $asana = new AsanaApi($apiKey); 
 $result = $asana->getWorkspaces();
-$userId = $asana->getUserId(); // should be saved in cookie
+$userId = $asana->getUserId();
 
 // check if everything works fine
 if($asana->getResponseCode() == '200' && $result != '' ){
-	    
-    // workspaces
-    ////////////////////////////
+
+    // ##############################################################################################
+    // WORKSPACES
+    // ##############################################################################################
     if($workspaceId == '' && $projectId == ''){
         
-       //echo '<b>Workspaces:</b><br />';
-
-    	$resultJson = json_decode($result);
-    	// $resultJson contains an object in json with all projects
-    	foreach($resultJson->data as $workspace){
-    		//echo '- <a href="?apiKey='.$apiKey.'&workspaceId=' . $workspace->id.'" target="_self">'. $workspace->name .'</a><br>';
+        $resultJson = json_decode($result);
+        // $resultJson contains an object in json with all projects
+        foreach($resultJson->data as $workspace){
             if($workspace->name == 'Personal Projects') continue;
             echo '<div class="span4 well workspace" data-workspace-id="' . $workspace->id .'"><h3>' . $workspace->name .'</h3></div>';
-    	}
+        }
     }
 
-    // tasks
-    ////////////////////////////
+    // ##############################################################################################
+    // TASKS
+    // ##############################################################################################
     if($projectId != ''){
-          
-        //echo '<b>Tasks:</b><br />';
         
         $result = $asana->getTasks($workspaceId);
         $result = json_decode($result);
 
+        // loop through all Tasks of the result, because the Asana-Api gives us also e.g. the completed ones
         foreach($result->data as $task){
              
              $value = $asana->getEstimatedAndWorkedTime($task->name);
@@ -69,7 +67,7 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              
              $progressState = ($progressBarPercent < 80) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
              
-             // task must be active and your own   
+             // task must be active and your own
              if($taskState['completed'] || $taskState['assignee'] != $userId) {
                 continue;
              } else {
@@ -104,8 +102,9 @@ if($asana->getResponseCode() == '200' && $result != '' ){
         
     }
     
-    // update
-    ////////////////////////////    
+    // ##############################################################################################
+    // UPDATE
+    // ##############################################################################################
     if($updateId != ''){
         
         $workedHours = $_GET['workedHours'];
