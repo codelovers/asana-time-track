@@ -142,8 +142,17 @@
                    entireHours += parseInt(splitTime($(v).html())[0]);
                    entireMinutes += parseInt(splitTime($(v).html())[1]);
                 });
+
+                // some time formatting
+                var workedTimeMillis = (entireHours*60*60*1000) + (entireMinutes*60*1000);
+                var sec = Math.floor(workedTimeMillis/1000);
+                var min = Math.floor(sec/60);
+                var hours = Math.floor(min/60);
+                    min = min % 60;
+                    hours = hours % 60;
+                
                 // render into bottom worked_time_today container
-                workedTimeToday.html(entireHours + ' hours ' + entireMinutes + ' minutes');
+                workedTimeToday.html(hours + ' hours ' + min + ' minutes');
                 
                 // locate elements
                 var locateClickedTd = $this.parent('td');
@@ -154,11 +163,11 @@
                 var locateEstimatedTimeWrapper = locateClickedTd.siblings('.estimated_time');
 
                 // estimated & worked time
-                var getWorkedHours = locateWorkedTimeWrapper.data('worked-hours');
-                var getWorkedMinutes = locateWorkedTimeWrapper.data('worked-minutes');
-                var getEstimatedHours = locateEstimatedTimeWrapper.data('estimated-hours');
-                var getEstimatedMinutes = locateEstimatedTimeWrapper.data('estimated-minutes');
-                
+                var getWorkedHours = parseInt(locateWorkedTimeWrapper.attr('data-worked-hours'));
+                var getWorkedMinutes = parseInt(locateWorkedTimeWrapper.attr('data-worked-minutes'));
+                var getEstimatedHours = parseInt(locateEstimatedTimeWrapper.attr('data-estimated-hours'));
+                var getEstimatedMinutes = parseInt(locateEstimatedTimeWrapper.attr('data-estimated-minutes'));
+
                 // task informations
                 var getTaskId = locateWorkedTimeWrapper.data('task-id');
                 var getTaskName = locateWorkedTimeWrapper.data('task-name');
@@ -167,10 +176,10 @@
                 var apiKey = $.cookie('asana-api-key');
                 
                 // calculate new worked time
-                var newMinutes = getWorkedMinutes+currentMinutes;
+                var newMinutes = getWorkedMinutes+1;
                 var rest = newMinutes-60;
                     newMinutes = (rest < 0 ) ? newMinutes : rest;
-                var newHours = (rest < 0 ) ? (getWorkedHours+currentHours) : (getWorkedHours+currentHours+1);
+                var newHours = (rest < 0 ) ? (getWorkedHours) : (getWorkedHours+1);
 
                 // calculate progress
                 var percent = (getEstimatedHours*60*1000 + getEstimatedMinutes * 1000) / 100;
