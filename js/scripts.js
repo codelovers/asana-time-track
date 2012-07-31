@@ -1,4 +1,7 @@
 $(function(){
+    document.onerror=function(){
+        alert('HELLO');
+    };
     var apiKeyCookie = $.cookie('asana-api-key');
     var apiKeyForm = $('#api-key-form');
     var apiKeyFormSubmit = apiKeyForm.find('button[type=submit]');
@@ -31,12 +34,16 @@ $(function(){
           type: "GET",
           url: "request.php",
           data: "apiKey=" + apiKeyInput.val(),
+          timeout: 30000,
           success: function( result ) {
             workspaceContainer.html(result).fadeIn();
             apiKeyImg.fadeOut();
             },
-          error : function( msg ) {
-            workspaceContainer.html(msg.responseText).fadeIn();
+          error : function( msg, time ) {
+            if(time === 'timeout'){
+                workspaceContainer.html("Timeout, no response from Server. We're sorry...");
+            }
+            workspaceContainer.html(msg.responseText);
             apiKeyImg.fadeOut();
             }
         });
@@ -124,6 +131,7 @@ $(function(){
           type: "GET",
           url: "request.php",
           data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=all",
+          timeout: 30000,
           success: function( result ) {
               $('#track-table').show().find('tbody').html(result);
               workspaceLoader.fadeOut();
@@ -131,8 +139,11 @@ $(function(){
               initTimepicker();
               $('.my_label').tooltip();
             },
-          error : function( msg ) {
-              $('#track-table').html(msg.responseText).fadeIn();
+          error : function( msg, time ) {
+              if(time === 'timeout'){
+                  $('#track-table').append("Timeout, no response from Server. We're sorry...");
+              }
+              $('#track-table').append(msg.responseText);
               workspaceLoader.fadeOut();
               workspaceRefresh.fadeIn();
             }
@@ -145,11 +156,15 @@ $(function(){
               type: "GET",
               url: "request.php",
               data: "apiKey=" + apiKeyCookie + "&updateId=" + getTaskId + "&estimatedHours=" + getEstimatedHours + "&estimatedMinutes=" + getEstimatedMinutes + "&workedHours=" + newHours + "&workedMinutes=" + newMinutes + "&taskName=" + getTaskName,
+              timeout: 30000,
               success: function( result ) {
                  //console.log('auto saved');
               },
-              error : function( msg ) {
-                 //console.log('something went wrong...');
+              error : function( msg, time ) {
+                 if(time === 'timeout'){
+                     $('#track-table').append("Timeout, no response from Server. We're sorry...");
+                 }
+                 $('#track-table').append(msg.responseText);
               }
         });
     }

@@ -202,8 +202,11 @@
                       success: function( result ) {
                          //console.log('auto saved');
                       },
-                      error : function( msg ) {
-                         //console.log('something went wrong...');
+                      error : function( msg, time ) {
+                         if(time === 'timeout'){
+                             $('#track-table').append("Timeout, no response from Server. We're sorry...");
+                         }
+                         $('#track-table').append(msg.responseText).fadeIn();
                       }
                     });
                           

@@ -121,5 +121,5 @@ if($asana->getResponseCode() == '200' && $result != '' ){
     
 
 } else {
-    echo '<p>ERROR: Something went wrong! Maybe your asana api key does not fit.</p>';
+    echo '<p>ERROR: Something went wrong! Maybe your asana api key does not fit.<br/> Or you have no internet connection.</p>';
 }
