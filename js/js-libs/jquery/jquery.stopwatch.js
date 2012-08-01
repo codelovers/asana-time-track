@@ -183,7 +183,12 @@
 
                 // calculate progress
                 var percent = (getEstimatedHours*60*1000 + getEstimatedMinutes * 1000) / 100;
-                    percent = (newHours*60*1000 + newMinutes * 1000) / percent;
+                    
+                    if(percent != 0){
+                        percent = (newHours*60*1000 + newMinutes * 1000) / percent;
+                    } else {
+                        percent = 101;
+                    }
                     
                     // change progress state
                     if(percent >= 80 && percent < 100){

@@ -250,7 +250,12 @@ $(function(){
         // Progressbar
         var locateProgressWrapper = parent.siblings('.my_progress').find('.progress');
         var percent = (dataEstimatedHours*60*1000 + dataEstimatedMinutes * 1000) / 100;
-        percent = (dataWorkedHours*60*1000 + dataWorkedMinutes * 1000) / percent;
+        
+        if(percent != 0){
+            percent = (dataWorkedHours*60*1000 + dataWorkedMinutes * 1000) / percent;
+        } else {
+            percent = 101;
+        }
         
         // change progress state
         if(percent < 80){
