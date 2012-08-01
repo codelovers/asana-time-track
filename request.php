@@ -45,7 +45,8 @@ if($asana->getResponseCode() == '200' && $result != '' ){
         
         $result = $asana->getTasks($workspaceId);
         $result = json_decode($result);
-
+        $in = false;
+        
         // loop through all Tasks of the result, because the Asana-Api gives us also e.g. the completed ones
         foreach($result->data as $task){
              
@@ -95,10 +96,15 @@ if($asana->getResponseCode() == '200' && $result != '' ){
                         </button>
                       </td>'
                     .'</tr>';
-                 
+                    
+                // at least one assigend task is found
+                $in = true;    
              }
          }
 
+         // no assigned task is found
+         if(!$in) echo '<tr><td colspan="6">Sorry, no assigned tasks are found...</td></tr>';
+         
          echo '<tr class="worked_time_line"><td colspan="4"><td class="text_align right">Worked today:</td><td class="worked_time_today">0 hours 0 minutes</td></tr>';
                  
         
