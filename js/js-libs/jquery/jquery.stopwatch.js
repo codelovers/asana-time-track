@@ -189,13 +189,13 @@
                     } else {
                         percent = 101;
                     }
-                    
+         
                     // change progress state
                     if(percent >= 80 && percent < 100){
-                        locateProgressWrapper.removeClass('progress-success');
+                        locateProgressWrapper.removeClass('progress-success', 'progress-danger');
                         locateProgressWrapper.addClass('progress-warning');
                     } else if (percent >= 100){
-                        locateProgressWrapper.removeClass('progress-warning');
+                        locateProgressWrapper.removeClass('progress-success', 'progress-warning');
                         locateProgressWrapper.addClass('progress-danger');
                     }
                     
