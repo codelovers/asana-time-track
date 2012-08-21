@@ -7,8 +7,9 @@ $(function(){
     var apiKeyInput = apiKeyForm.find('#api-key');
     var workspaceContainer = apiKeyForm.siblings('#workspace-container');
     var apiKeyImg = apiKeyForm.find('.ajax_img');
-    var workspaceLoader = $('.container').children('#loader-wrapper').find('.ajax_img');
-    var workspaceRefresh = $('.container').children('#loader-wrapper').find('#workspace-refresh');
+    var workspace = $('.container').children('#loader-wrapper');
+    var workspaceLoader = workspace.find('.ajax_img');
+    var workspaceRefresh = workspace.find('#workspace-refresh');
     var modalBackdrop = $('.modal-backdrop');
     var activeWorkspaceId = null;
     modalInit();
@@ -156,11 +157,12 @@ $(function(){
               data: "apiKey=" + apiKeyCookie + "&updateId=" + getTaskId + "&estimatedHours=" + getEstimatedHours + "&estimatedMinutes=" + getEstimatedMinutes + "&workedHours=" + newHours + "&workedMinutes=" + newMinutes + "&taskName=" + getTaskName,
               timeout: 30000,
               success: function( result ) {
-                 //console.log('auto saved');
+                 // update was successful
+                 workspaceRefresh.removeClass('disabled');
               },
               error : function( msg, time ) {
                  if(time === 'timeout'){
-                     $('#track-table').append("Timeout, no response from Server. We're sorry...");
+                     $('#track-table').append("Timeout, no response from Server. We're sorry... Please try it again.");
                  }
                  $('#track-table').append(msg.responseText);
               }
@@ -205,6 +207,10 @@ $(function(){
     
     // Callback for onSelect Event of the Timepicker-Module (plugin)
     function onScrollerSelect(valueText){
+        
+        // set refresh button disabled while request
+        workspaceRefresh.addClass('disabled');
+        
         var dataEstimatedHours = null;
         var dataEstimatedMinutes = null;
         var dataWorkedHours = null;
@@ -307,9 +313,13 @@ $(function(){
     
     // refresh the Workspace manual
     workspaceRefresh.on('click', function(){
-        tasksAjaxCall();
-        workspaceRefresh.hide();
-        workspaceLoader.delay('200').show();
+        
+        if(!workspaceRefresh.hasClass('disabled')){
+            tasksAjaxCall();
+            workspaceRefresh.hide();
+            workspaceLoader.delay('200').show();
+        } 
+
     });
     
     $("#track-table").on('click', 'td.estimated_time', function(event){
