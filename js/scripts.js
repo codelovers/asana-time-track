@@ -1,7 +1,5 @@
 $(function(){
-    document.onerror=function(){
-        alert('HELLO');
-    };
+
     var apiKeyCookie = $.cookie('asana-api-key');
     var apiKeyForm = $('#api-key-form');
     var apiKeyFormSubmit = apiKeyForm.find('button[type=submit]');
