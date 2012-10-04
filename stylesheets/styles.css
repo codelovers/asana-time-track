@@ -282,3 +282,9 @@ footer {
 .fb-like {
     margin: 0 0 0 10px;
 }
+
+
+.paypal, .FlattrButton{
+    float:left;
+    margin-right:20px;
+}
