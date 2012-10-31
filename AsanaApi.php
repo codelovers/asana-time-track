@@ -79,7 +79,7 @@ class AsanaApi {
         $data = array("data" => $data);
         $data = json_encode($data);
         
-        return $this->apiRequest($this->taskUri.'/'.$taskId , $data, PUT_METHOD);
+        return $this->apiRequest($this->taskUri.'/'.$taskId , $data, self::PUT_METHOD);
     }
     
     public function getEstimatedAndWorkedTime($data){
@@ -120,7 +120,7 @@ class AsanaApi {
     // ##############################################################################################
     // ASK ASANA API AND RETURN DATA
     // ##############################################################################################
-    private function apiRequest($url, $givenData = null, $method = GET_METHOD){
+    private function apiRequest($url, $givenData = null, $method = self::GET_METHOD){
 
         // ask asana api and return data
         $curl = curl_init();
@@ -132,7 +132,7 @@ class AsanaApi {
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json")); // Send as JSON
 
-        if($method == PUT_METHOD){
+        if($method == self::PUT_METHOD){
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
             curl_setopt($curl, CURLOPT_POSTFIELDS, $givenData);
         }
