@@ -13,9 +13,9 @@ require_once("AsanaApi.php");
 
 // get data
 $apiKey = $_GET['apiKey'];
-$workspaceId = $_GET['workspaceId'];
-$projectId = $_GET['projectId'];
-$updateId = $_GET['updateId'];
+$workspaceId = !empty($_GET['workspaceId']) ? $_GET['workspaceId'] : '';
+$projectId = !empty($_GET['projectId']) ? $_GET['projectId'] : '';
+$updateId = !empty($_GET['updateId']) ? $_GET['updateId'] : '';
 
 // initalize
 $asana = new AsanaApi($apiKey); 
