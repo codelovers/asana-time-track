@@ -82,30 +82,33 @@ class AsanaApi {
         return $this->apiRequest($this->taskUri.'/'.$taskId , $data, self::PUT_METHOD);
     }
     
-    public function getEstimatedAndWorkedTime($data){
-        $data = explode('[', $data);  
-        $data[1] = str_replace('ET:', '', $data[1]);
-        $data[2] = str_replace('WT:', '', $data[2]);
-        $data[1] = trim(substr($data[1], 0, -1)); // estimated time
-        $data[2] = trim(substr($data[2], 0, -1)); // worked time
+    public function getEstimatedAndWorkedTime($taskName){
+        $estimatedTimeHours = 0;
+        $estimatedTimeMinutes = 0;
+        $workedTimeHours = 0;
+        $workedTimeMinutes = 0;
+        $workedTime = 0;
         
-        // estimated time
-        $explodeString = explode('h', $data[1]);
-        $estimatedTimeHours = ($explodeString[0] != '') ? $explodeString[0] : 0;
-        $estimatedTimeMinutes = trim(substr($explodeString[1], 0, -2));
-        $estimatedTimeMinutes = ($estimatedTimeMinutes != '') ? $estimatedTimeMinutes : 0;
-
-        // worked time
-        $explodeString = explode('h', $data[2]);
-        $workedTimeHours = ($explodeString[0] != '') ? $explodeString[0] : 0;
-        $workedTimeMinutes = trim(substr($explodeString[1], 0, -1));
-        $workedTimeMinutes = ($workedTimeMinutes != '') ? $workedTimeMinutes : 0;
+        $pattern = "/\[ET\: (\d+)h (\d+)m\] \[WT\: (\d+)h (\d+)m\]$/";
         
-        // worked time in sec
-        $workedTime = $workedTimeHours * 60 * 60 * 1000;
-        $workedTime += $workedTimeMinutes * 60 * 1000;
+        if(preg_match($pattern, $taskName, $matches)) {
+            
+            // estimated time
+            $estimatedTimeHours = $matches[1];
+            $estimatedTimeMinutes = $matches[2];
+            
+            // worked time
+            $workedTimeHours = $matches[3];
+            $workedTimeMinutes = $matches[4];
+            
+            // worked time in sec
+            $workedTime = $workedTimeHours * 60 * 60 * 1000;
+            $workedTime += $workedTimeMinutes * 60 * 1000;
+            
+            $taskName = preg_replace($pattern, "", $taskName);
+        }
         
-        $array = array ( 'taskName' => $data[0],
+        $array = array ( 'taskName' => $taskName,
                          'estimatedHours' => $estimatedTimeHours,
                          'estimatedMinutes' => $estimatedTimeMinutes,
                          'workedHours' => $workedTimeHours,
