@@ -130,7 +130,7 @@ $(function(){
           type: "GET",
           url: "request.php",
           data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=all",
-          timeout: 30000,
+          timeout: 90000,
           success: function( result ) {
               $('#track-table').show().find('tbody').html(result);
               workspaceLoader.fadeOut();
