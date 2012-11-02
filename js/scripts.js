@@ -124,7 +124,7 @@ $(function(){
     
     function tasksAjaxCall(projectId){
         // clean tbody
-        $('#track-table').show().find('tbody').html('<tr><td colspan="6">One moment please, your assigned tasks are loading...</td></tr>');
+        $('#track-table').show().html('<p>One moment please, your assigned tasks are loading...</p>');
         
         $.ajax({
           type: "GET",
@@ -132,7 +132,7 @@ $(function(){
           data: "apiKey=" + apiKeyInput.val() + "&workspaceId=" + activeWorkspaceId + "&projectId=all",
           timeout: 90000,
           success: function( result ) {
-              $('#track-table').show().find('tbody').html(result);
+              $('#track-table').show().html(result);
               workspaceLoader.fadeOut();
               workspaceRefresh.fadeIn();
               initTimepicker();

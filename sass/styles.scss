@@ -85,7 +85,8 @@ $clGreen: #bdca07;
                 @include box-shadow(rgba(0, 0, 0, 0.1) 0 1px 20px inset);
             }
 
-        }    }
+        }
+    }
     
     .hint_api_key{
         margin:10px 0 0 5px;
@@ -119,11 +120,15 @@ $clGreen: #bdca07;
             text-align:right;
         }
     }
+    h2 {
+        margin-bottom: 20px;
+    }
 }
 
 // Timepicker
 
-.date-picker-et, .date-picker-wt {    display: none;
+.date-picker-et, .date-picker-wt {
+    display: none;
 }
 
 .estimated_time, .worked_time {

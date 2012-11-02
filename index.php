@@ -85,7 +85,8 @@
             We did, because we love asana but missed a time tracking feature.<br/>
             So we created one on our own, which works perfectly well with asana together.
             <br/><br/>
-            If you want to know more about us, visit our Website <a href="http://codelovers.de">codelovers.de</a>.            <br/><br/>
+            If you want to know more about us, visit our Website <a href="http://codelovers.de">codelovers.de</a>.
+            <br/><br/>
             <a href="https://twitter.com/we_love_code" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Follow @we_love_code</a>
         </p>
       </div>
@@ -105,21 +106,7 @@
         <img class="ajax_img" src="img/ajax-loader.gif"/>
     </div>
     <div id="track-table">
-      <table class="att_track_table table table-bordered">
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>Tasks (assigned to you)</th>
-            <th>Estimated Time</th>
-            <th>Worked Time</th>
-            <th>Progress</th>
-            <th>Timer</th>
-          </tr>
-        </thead>
-        <tbody>
-           <!-- content rendered here -->
-        </tbody>
-      </table>
+      
     </div>
     </div> <!-- /container -->
     <div class="modal-backdrop"></div>
