@@ -63,7 +63,7 @@ class AsanaApi {
     public function getOneTask($taskId){
         $resultJson = json_decode($this->apiRequest($this->taskUri.'/'.$taskId));
         
-        $castIntoArray = (array)$resultJson->data->projects[0];
+        $castIntoArray = (array) @$resultJson->data->projects[0];
         
         $array = array ( 'completed' => $resultJson->data->completed,
                          'assignee' => $resultJson->data->assignee->id,

@@ -47,65 +47,125 @@ if($asana->getResponseCode() == '200' && $result != '' ){
         $result = json_decode($result);
         $in = false;
         
+        $completedTasks = array();
+        $pendingTasks = array();
+        
         // loop through all Tasks of the result, because the Asana-Api gives us also e.g. the completed ones
-        foreach($result->data as $task){
+        foreach($result->data as $task) {
              
-             $value = $asana->getEstimatedAndWorkedTime($task->name);
-             $taskState = $asana->getOneTask($task->id);
-
-             $taskName = $value['taskName'];
-             $estimatedHours = (!empty($value['estimatedHours'])) ? $value['estimatedHours'].'h' : '0h';
-             $estimatedMinutes = (!empty($value['estimatedMinutes'])) ? $value['estimatedMinutes'].'m' : '0m';
-             $workedHours = (!empty($value['workedHours'])) ? $value['workedHours'].'h' : '0h';
-             $workedMinutes = (!empty($value['workedMinutes'])) ? $value['workedMinutes'].'m' : '0m';
-             $workedTime = $value['workedTimeSec'];
+             $taskData = array();
+             $taskData['value'] = $asana->getEstimatedAndWorkedTime($task->name);
+             $taskData['id'] = $task->id;
+             $taskData['taskState'] = $asana->getOneTask($task->id);
+             $taskData['estimatedHours'] = (!empty($taskData['value']['estimatedHours'])) ? $taskData['value']['estimatedHours'].'h' : '0h';
+             $taskData['estimatedMinutes'] = (!empty($taskData['value']['estimatedMinutes'])) ? $taskData['value']['estimatedMinutes'].'m' : '0m';
+             $taskData['workedHours'] = (!empty($taskData['value']['workedHours'])) ? $taskData['value']['workedHours'].'h' : '0h';
+             $taskData['workedMinutes'] = (!empty($taskData['value']['workedMinutes'])) ? $taskData['value']['workedMinutes'].'m' : '0m';
+             $taskData['workedTime'] = $taskData['value']['workedTimeSec'];
+             $taskData['progressBarPercent'] = ($taskData['estimatedHours']*60*1000 + $taskData['estimatedMinutes'] * 1000) / 100;
              
-             // progress bar
-             $progressBarPercent = ($estimatedHours*60*1000 + $estimatedMinutes * 1000) / 100;
-             if($progressBarPercent != 0){
-                $progressBarPercent = ($workedHours*60*1000 + $workedMinutes * 1000) / $progressBarPercent;
+             if($taskData['progressBarPercent'] != 0){
+                 $taskData['progressBarPercent'] = ($taskData['workedHours']*60*1000 + $taskData['workedMinutes'] * 1000) / $taskData['progressBarPercent'];
              }
+             elseif($taskData['progressBarPercent'] === '') $taskData['progressBarPercent'] = 100;
              
-             if($progressBarPercent === '') $progressBarPercent = 100;
-             
-             $progressState = ($progressBarPercent < 80) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
+             $taskData['progressState'] = ($taskData['progressBarPercent'] < 80) ? 'progress-success' : (($taskData['progressBarPercent'] < 100 ) ? 'progress-warning' : 'progress-danger');
              
              // task must be active and your own
-             if($taskState['completed'] || $taskState['assignee'] != $userId || $taskName == '') {
-                continue;
-             } else {
-                echo '<tr>'
-                    .'<td>'. $taskState['projects']['name'] .'</td>'
-                    .'<td>'. $taskName  .'</td>'
-                    .'<td class="estimated_time" data-estimated-hours="'.$value['estimatedHours'].'" data-estimated-minutes="'.$value['estimatedMinutes'].'">'
-                        . '<span class="my_label" rel="tooltip" title="click to edit">' . $estimatedHours .' '. $estimatedMinutes . '</span>'
-                        . '<input class="date-picker-et" name="date-picker-et"/>'
-                    . '</td>'
-                    .'<td class="worked_time" data-worked-hours="'.$value['workedHours'].'" data-worked-minutes="'.$value['workedMinutes'].'" data-task-id="' . $task->id . '" data-task-name="' . $taskName . '">'
-                        . '<span class="my_label" rel="tooltip" title="click to edit">' . $workedHours .' '. $workedMinutes . '</span>'
-                        . '<input class="date-picker-wt" name="date-picker-wt"/>'
-                    . '</td>'
-                    .'<td class="my_progress"><div class="progress ' . $progressState . ' progress-striped">
-                            <div class="bar" style="width: ' . $progressBarPercent . '%;"></div>
-                        </div>
-                      </td>'
-                    .'<td class="my_timer">
-                        <div class="time">00:00:00</div>
-                        <button class="btn btn-success" type="submit">
-                            <i class="icon-white icon-play"></i><span class="start_stop_text">Start</span>
-                        </button>
-                      </td>'
-                    .'</tr>';
-                    
-                // at least one assigend task is found
-                $in = true;    
+             if($taskData['taskState']['assignee'] != $userId || $taskData['value']['taskName'] == '') continue;
+             elseif(!$taskData['taskState']['completed']) $pendingTasks[] = $taskData;
+             elseif($task->name != $taskData['value']['taskName']) $completedTasks[] = $taskData;
+         }
+         
+         echo '
+         <h2>Pending tasks</h2>
+         <table class="att_track_table table table-bordered">
+             <thead>
+               <tr>
+                 <th>Project</th>
+                 <th>Tasks (assigned to you)</th>
+                 <th>Estimated Time</th>
+                 <th>Worked Time</th>
+                 <th>Progress</th>
+                 <th>Timer</th>
+               </tr>
+             </thead>
+             <tbody>';
+          // no pending task is found
+         if(count($pendingTasks) == 0) echo '<tr><td colspan="6">Sorry, no pending tasks assigned to you were found...</td></tr>';
+         else {
+             foreach($pendingTasks as $task) {
+                 echo '<tr>'
+                     .'<td>'. $task['taskState']['projects']['name'] .'</td>'
+                     .'<td>'. $task['value']['taskName']  .'</td>'
+                     .'<td class="estimated_time" data-estimated-hours="'.$task['value']['estimatedHours'].'" data-estimated-minutes="'.$task['value']['estimatedMinutes'].'">'
+                         . '<span class="my_label" rel="tooltip" title="click to edit">' . $task['estimatedHours'] .' '. $task['estimatedMinutes'] . '</span>'
+                         . '<input class="date-picker-et" name="date-picker-et"/>'
+                     . '</td>'
+                     .'<td class="worked_time" data-worked-hours="'.$task['value']['workedHours'].'" data-worked-minutes="'.$task['value']['workedMinutes'].'" data-task-id="' . $task['id'] . '" data-task-name="' . $task['value']['taskName'] . '">'
+                         . '<span class="my_label" rel="tooltip" title="click to edit">' . $task['workedHours'] .' '. $task['workedMinutes'] . '</span>'
+                         . '<input class="date-picker-wt" name="date-picker-wt"/>'
+                     . '</td>'
+                     .'<td class="my_progress"><div class="progress ' . $task['progressState'] . ' progress-striped">
+                             <div class="bar" style="width: ' . $task['progressBarPercent'] . '%;"></div>
+                         </div>
+                       </td>'
+                     .'<td class="my_timer">
+                         <div class="time">00:00:00</div>
+                         <button class="btn btn-success" type="submit">
+                             <i class="icon-white icon-play"></i><span class="start_stop_text">Start</span>
+                         </button>
+                       </td>'
+                     .'</tr>';
              }
          }
-
-         // no assigned task is found
-         if(!$in) echo '<tr><td colspan="6">Sorry, no assigned tasks are found...</td></tr>';
-         
-         echo '<tr class="worked_time_line"><td colspan="4"><td class="text_align right">Worked today:</td><td class="worked_time_today">0 hours 0 minutes</td></tr>';
+         echo '<tr class="worked_time_line"><td colspan="4"><td class="text_align right">Worked today:</td><td class="worked_time_today">0 hours 0 minutes</td></tr>
+             </tbody>
+             </table>
+             <h2>Completed tasks</h2>
+             <table class="att_track_table table table-bordered">
+                <thead>
+                    <tr>
+                      <th>Project</th>
+                      <th>Tasks (assigned to you)</th>
+                      <th>Estimated Time</th>
+                      <th>Worked Time</th>
+                      <th>Progress</th>
+                    </tr>
+               </thead>
+               <tbody>';
+           // no completed task is found
+          $totalWorkedMinutes = 0;
+          $totalWorkedHours = 0;
+          
+          if(count($completedTasks) == 0) echo '<tr><td colspan="6">Sorry, no completed tasks assigned to you were found...</td></tr>';
+          else {
+              foreach($completedTasks as $task) {
+                  echo '<tr>'
+                       .'<td>'. @$task['taskState']['projects']['name'] .'</td>'
+                       .'<td>'. $task['value']['taskName']  .'</td>'
+                       .'<td class="estimated_time" data-estimated-hours="'.$task['value']['estimatedHours'].'" data-estimated-minutes="'.$task['value']['estimatedMinutes'].'">'
+                           . '<span class="my_label">' . $task['estimatedHours'] .' '. $task['estimatedMinutes'] . '</span>'
+                       . '</td>'
+                       .'<td class="worked_time" data-worked-hours="'.$task['value']['workedHours'].'" data-worked-minutes="'.$task['value']['workedMinutes'].'" data-task-id="' . $task['id'] . '" data-task-name="' . $task['value']['taskName'] . '">'
+                           . '<span class="my_label">' . $task['workedHours'] .' '. $task['workedMinutes'] . '</span>'
+                       . '</td>'
+                       .'<td class="my_progress"><div class="progress ' . $task['progressState'] . ' progress-striped">
+                               <div class="bar" style="width: ' . $task['progressBarPercent'] . '%;"></div>
+                           </div>
+                         </td>'
+                       .'</tr>';
+                       
+                   $totalWorkedMinutes += $task['value']['workedMinutes'];
+                   $totalWorkedHours += $task['value']['workedHours'];
+              }
+          }
+          $totalWorkedHours += floor($totalWorkedMinutes / 60);
+          $totalWorkedMinutes = $totalWorkedMinutes % 60;
+          
+          echo '<tr class="worked_time_line"><td colspan="3"><td class="text_align right">Worked in total:</td><td class="worked_time_total">'.$totalWorkedHours.' hours '.$totalWorkedMinutes.' minutes</td></tr>
+              </tbody>
+              </table>';
                  
         
     }
