@@ -244,10 +244,15 @@
                 var $this = $(this);
                 var data = $this.data('stopwatch');
                 
-                // toggle progress bar active state
+                // toggle progress bar active state if checked
                 var locateClickedTd = $this.parent('td');
                 var locateProgressBar = locateClickedTd.prev().find('.progress');
+				if($('#animate').attr('checked')) {
                     locateProgressBar.toggleClass('active');
+				}
+				else {
+					locateProgressBar.removeClass('active');
+				}
     
                 if (data.active) {
                     $this.stopwatch('stop');

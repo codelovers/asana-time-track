@@ -35,6 +35,16 @@
               <li><a data-toggle="modal" href="#about-modal">About</a></li>
             </ul>
           </div><!--/.nav-collapse -->
+          <div class="nav-collapse pull-right">
+            <ul class="nav">
+                <li>
+                    <a href="#"><label class="checkbox">
+                      <input id="animate" type="checkbox" value="" checked>
+                      Progress Animation
+                    </label></a>
+                </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -85,7 +95,8 @@
             We did, because we love asana but missed a time tracking feature.<br/>
             So we created one on our own, which works perfectly well with asana together.
             <br/><br/>
-            If you want to know more about us, visit our Website <a href="http://codelovers.de">codelovers.de</a>.            <br/><br/>
+            If you want to know more about us, visit our Website <a href="http://codelovers.de">codelovers.de</a>.
+            <br/><br/>
             <a href="https://twitter.com/we_love_code" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Follow @we_love_code</a>
         </p>
       </div>
