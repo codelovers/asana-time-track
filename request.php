@@ -70,8 +70,8 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              
              $progressState = ($progressBarPercent < 80) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
              
-             // task must be active and your own
-             if($taskState['completed'] || $taskState['assignee'] != $userId || $taskName == '') {
+             // task must be active, marked for today and your own
+             if($taskState['completed'] || $taskState['assignee_status'] != 'today' || $taskState['assignee'] != $userId || $taskName == '') {
                 continue;
              } else {
                 echo '<tr>'
