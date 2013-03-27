@@ -68,6 +68,7 @@ class AsanaApi {
         $array = array ( 'completed' => $resultJson->data->completed,
                          'assignee_status' => $resultJson->data->assignee_status,
                          'assignee' => $resultJson->data->assignee->id,
+                         'parent' => $resultJson->data->parent->name,
                          'projects' => $castIntoArray
                        );
         
