@@ -151,7 +151,6 @@
     <script src="js/js-libs/jquery/jquery.stopwatch.js"></script>
     <script src="js/js-libs/footable/footable.js"></script>
     <script src="js/js-libs/footable/footable.filter.js"></script>
-    <script src="js/js-libs/footable/footable.paginate.js"></script>
     <script src="js/js-libs/footable/footable.sort.js"></script>
     <script src="js/js-libs/footable/footable.sortable.js"></script>
     <script src="js/js-libs/mobiscroll-2.0.custom.min.js"></script>
