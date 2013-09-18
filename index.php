@@ -148,6 +148,7 @@
     <script src="js/js-libs/bootstrap/bootstrap-modal.js"></script>
     <script src="js/js-libs/bootstrap/bootstrap-tooltip.js"></script>
     <script src="js/js-libs/jquery/jquery.cookie.js"></script>
+    <script src="js/js-libs/jquery/jquery.stopwatch.js"></script>
     <script src="js/js-libs/footable/footable.js"></script>
     <script src="js/js-libs/footable/footable.filter.js"></script>
     <script src="js/js-libs/footable/footable.paginate.js"></script>
