@@ -68,6 +68,12 @@ class AsanaApi {
         if(array_key_exists(0, $resultJson->data->projects)) {
             $castIntoArray = (array)$resultJson->data->projects[0];
         }
+        elseif(is_object($resultJson->data->parent)){
+            $castIntoArray = array(
+                                'id' => $resultJson->data->parent->id,
+                                'name' => 'PARENT TASK: '.$resultJson->data->parent->name
+                             );
+        }
         else{
             $castIntoArray = array(
                                 'id' => $resultJson->data->id,
