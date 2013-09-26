@@ -65,8 +65,6 @@ class AsanaApi {
         
         $castIntoArray = array();
 
-        $array = array();
-
         if(array_key_exists(0, $resultJson->data->projects)) {
             $castIntoArray = (array)$resultJson->data->projects[0];
         }
