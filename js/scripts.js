@@ -346,3 +346,8 @@ $(function(){
         input.scroller('show');
     });
 });
+
+//footable
+$(function () {
+    $('.footable').footable();
+});

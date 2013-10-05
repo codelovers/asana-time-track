@@ -9,6 +9,8 @@
 
     <!-- Le styles -->
     <link href="css/styles.css" rel="stylesheet">
+    <!-- Footabel Style Sheet -->
+    <link href="css/footable.core.min.css" rel="stylesheet">
     <link rel="icon" type="img/ico" href="img/favicon.ico">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -116,14 +118,18 @@
         <img class="ajax_img" src="img/ajax-loader.gif"/>
     </div>
     <div id="track-table">
-      <table class="att_track_table table table-bordered">
+      <p>
+        Search: <input id="filter" type="text"/>
+        <a href="#clear" class="clear-filter" title="clear filter">[clear]</a>
+      </p>
+      <table class="att_track_table table table-bordered footable" data-filter="#filter" data-filter-text-only="true">
         <thead>
           <tr>
-            <th>Project</th>
-            <th>Tasks (assigned to you)</th>
-            <th>Estimated Time</th>
-            <th>Worked Time</th>
-            <th>Progress</th>
+            <th data-sort-initial="true">Project</th>
+            <th data-sort-initial="true">Tasks (assigned to you)</th>
+            <th data-sort-initial="true">Estimated Time</th>
+            <th data-sort-initial="true">Worked Time</th>
+            <th data-sort-initial="true">Progress</th>
             <th>Timer</th>
           </tr>
         </thead>
@@ -143,6 +149,11 @@
     <script src="js/js-libs/bootstrap/bootstrap-tooltip.js"></script>
     <script src="js/js-libs/jquery/jquery.cookie.js"></script>
     <script src="js/js-libs/jquery/jquery.stopwatch.js"></script>
+    <script src="js/js-libs/footable/footable.js"></script>
+    <script src="js/js-libs/footable/footable.filter.js"></script>
+    <script src="js/js-libs/footable/footable.sort.js"></script>
+    <script src="js/js-libs/footable/footable.sortable.js"></script>
+    <script src="js/js-libs/mobiscroll-2.0.custom.min.js"></script>
     <script src="js/js-libs/mobiscroll-2.0.custom.min.js"></script>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     <script src="js/scripts.js"></script>
