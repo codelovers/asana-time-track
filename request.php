@@ -20,7 +20,6 @@ $updateId = !empty($_GET['updateId']) ? $_GET['updateId'] : '';
 // initalize
 $asana = new AsanaApi($apiKey); 
 $result = $asana->getWorkspaces();
-$userId = $asana->getUserId();
 
 // check if everything works fine
 if($asana->getResponseCode() == '200' && $result != '' ){
@@ -51,7 +50,7 @@ if($asana->getResponseCode() == '200' && $result != '' ){
         foreach($result->data as $task){
              
              $value = $asana->getEstimatedAndWorkedTime($task->name);
-             $taskState = $asana->getOneTask($task->id);
+             $taskState = $asana->getTaskState($task);
 
              $taskName = $value['taskName'];
              $estimatedHours = (!empty($value['estimatedHours'])) ? $value['estimatedHours'].'h' : '0h';
@@ -70,8 +69,8 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              
              $progressState = ($progressBarPercent < 80) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
              
-             // task must be active and your own
-             if($taskState['completed'] || $taskState['assignee'] != $userId || $taskName == '') {
+             // task must be active
+             if($taskState['completed'] || $taskName == '') {
                 continue;
              } else {
                 echo '<tr>'
