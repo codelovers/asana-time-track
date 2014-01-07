@@ -57,31 +57,29 @@ class AsanaApi {
     }
     
     public function getTasks($workspaceId){
-        return $this->apiRequest($this->workspaceUri.'/'.$workspaceId.'/tasks?assignee=me');
+        return $this->apiRequest($this->workspaceUri.'/'.$workspaceId.'/tasks?assignee=me&opt_fields=name,completed,projects,projects.name,parent,parent.name');
     }
     
-    public function getOneTask($taskId){
-        $resultJson = json_decode($this->apiRequest($this->taskUri.'/'.$taskId));
-        
+    public function getTaskState($data){
         $castIntoArray = array();
 
-        if(array_key_exists(0, $resultJson->data->projects)) {
-            $castIntoArray = (array)$resultJson->data->projects[0];
+        if(array_key_exists(0, $data->projects)) {
+            $castIntoArray = (array)$data->projects[0];
         }
-        elseif(is_object($resultJson->data->parent)){
+        elseif(is_object($data->parent)){
             $castIntoArray = array(
-                                'id' => $resultJson->data->parent->id,
-                                'name' => 'PARENT TASK: '.$resultJson->data->parent->name
+                                'id' => $data->parent->id,
+                                'name' => 'PARENT TASK: '.$data->parent->name
                              );
         }
         else{
             $castIntoArray = array(
-                                'id' => $resultJson->data->id,
+                                'id' => $data->id,
                                 'name' => 'NO PROJECT'
                              );
         }
 
-        $array = array ( 'completed' => $resultJson->data->completed,
+        $array = array ( 'completed' => $data->completed,
                          'projects' => $castIntoArray
                        );
 

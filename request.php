@@ -50,7 +50,7 @@ if($asana->getResponseCode() == '200' && $result != '' ){
         foreach($result->data as $task){
              
              $value = $asana->getEstimatedAndWorkedTime($task->name);
-             $taskState = $asana->getOneTask($task->id);
+             $taskState = $asana->getTaskState($task);
 
              $taskName = $value['taskName'];
              $estimatedHours = (!empty($value['estimatedHours'])) ? $value['estimatedHours'].'h' : '0h';
