@@ -57,7 +57,7 @@ class AsanaApi {
     }
     
     public function getTasks($workspaceId){
-        return $this->apiRequest($this->workspaceUri.'/'.$workspaceId.'/tasks?assignee=me');
+        return $this->apiRequest($this->workspaceUri.'/'.$workspaceId.'/tasks?assignee=me&completed_since=now');
     }
     
     public function getOneTask($taskId){
