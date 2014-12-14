@@ -8,9 +8,6 @@
     var currentHours, currentMinutes, currentSeconds, progressState, workedTimeToday;
     var saveInterval = 1;
 
-    function incrementer(ct, increment) {
-        return function() { ct+=increment; return ct; };
-    }
     
     function pad2(number) {
          return (number < 10 ? '0' : '') + number;
@@ -57,7 +54,8 @@
         
         init: function(options) {
             var defaults = {
-                updateInterval: 1000,
+                tickInterval: 1000,
+                updateInterval: 60 * 1000,
                 startTime: 0,
                 format: '{HH}:{MM}:{SS}',
                 formatter: formatMilliseconds
@@ -79,12 +77,14 @@
                     data.elapsed = settings.startTime;
                     
                     // create counter
-                    data.incrementer = incrementer(data.startTime, data.updateInterval);
                     data.tick_function = function() {
-                        var millis = data.incrementer();
+                        var millis = new Date().getTime() - data.timerStarted;
                         data.elapsed = millis;
                         data.target.trigger('tick.stopwatch', [millis]);
                         data.target.stopwatch('render');
+                    };
+                    data.update_function = function(){
+                        data.target.stopwatch('updateWorkedTime');
                     };
                     $this.data('stopwatch', data);
                 }
@@ -101,7 +101,9 @@
                     data = $this.data('stopwatch');
                 // Mark as active
                 data.active = true;
-                data.timerID = setInterval(data.tick_function, data.updateInterval);
+                data.timerID = setInterval(data.tick_function, data.tickInterval);
+                data.updateID = setInterval(data.update_function, data.updateInterval);
+                data.timerStarted = new Date().getTime();
                 $this.data('stopwatch', data);
             });
         },
@@ -111,6 +113,7 @@
                 var $this = $(this),
                     data = $this.data('stopwatch');
                 clearInterval(data.timerID);
+                clearInterval(data.updateID);
                 data.active = false;
                 $this.data('stopwatch', data);
             });
@@ -127,110 +130,111 @@
         render: function() {
             var $this = $(this),
                 data = $this.data('stopwatch');
-            
-            // update left row "Worked Time"
-            // check every 60 seconds, it´s better for performance
-            if(currentSeconds == 0){
-              
-                // needed for entire worked time today
-                var locateAllTimer = $('.my_timer .time');
-                
-                var entireHours = 0;
-                var entireMinutes = 0;
-                
-                $.each(locateAllTimer, function(i, v){
-                   entireHours += parseInt(splitTime($(v).html())[0]);
-                   entireMinutes += parseInt(splitTime($(v).html())[1]);
-                });
-
-                // some time formatting
-                var workedTimeMillis = (entireHours*60*60*1000) + (entireMinutes*60*1000);
-                var sec = Math.floor(workedTimeMillis/1000);
-                var min = Math.floor(sec/60);
-                var hours = Math.floor(min/60);
-                    min = min % 60;
-                    hours = hours % 60;
-                
-                // render into bottom worked_time_today container
-                workedTimeToday.html(hours + ' hours ' + min + ' minutes');
-                
-                // locate elements
-                var locateClickedTd = $this.parent('td');
-                var locateProgress = locateClickedTd.prev();
-                var locateProgressWrapper = locateProgress.find('.progress');
-                var locateProgressBar = locateProgress.find('.bar');
-                var locateWorkedTimeWrapper = locateClickedTd.prev().prev('.worked_time');
-                var locateEstimatedTimeWrapper = locateClickedTd.siblings('.estimated_time');
-
-                // estimated & worked time
-                var getWorkedHours = parseInt(locateWorkedTimeWrapper.attr('data-worked-hours'));
-                var getWorkedMinutes = parseInt(locateWorkedTimeWrapper.attr('data-worked-minutes'));
-                var getEstimatedHours = parseInt(locateEstimatedTimeWrapper.attr('data-estimated-hours'));
-                var getEstimatedMinutes = parseInt(locateEstimatedTimeWrapper.attr('data-estimated-minutes'));
-
-                // task informations
-                var getTaskId = locateWorkedTimeWrapper.data('task-id');
-                var getTaskName = locateWorkedTimeWrapper.data('task-name');
-                
-                // api key
-                var apiKey = $.cookie('asana-api-key');
-                
-                // calculate new worked time
-                var newMinutes = getWorkedMinutes+1;
-                var rest = newMinutes-60;
-                    newMinutes = (rest < 0 ) ? newMinutes : rest;
-                var newHours = (rest < 0 ) ? (getWorkedHours) : (getWorkedHours+1);
-
-                // calculate progress
-                var percent = (getEstimatedHours*60*1000 + getEstimatedMinutes * 1000) / 100;
-                    
-                    if(percent != 0){
-                        percent = (newHours*60*1000 + newMinutes * 1000) / percent;
-                    } else {
-                        percent = 101;
-                    }
-         
-                    // change progress state
-                    if(percent >= 80 && percent < 100){
-                        locateProgressWrapper.removeClass('progress-success', 'progress-danger');
-                        locateProgressWrapper.addClass('progress-warning');
-                    } else if (percent >= 100){
-                        locateProgressWrapper.removeClass('progress-success', 'progress-warning');
-                        locateProgressWrapper.addClass('progress-danger');
-                    }
-                    
-                    locateProgressBar.css('width', percent + '%');
-                    
-                // render new worked time into left row "Worked Time"
-                locateWorkedTimeWrapper.find('.my_label').html(newHours + 'h ' + newMinutes + 'm');
-                locateWorkedTimeWrapper.attr('data-worked-hours', newHours);
-                locateWorkedTimeWrapper.attr('data-worked-minutes', newMinutes);
-                // save interval
-                --saveInterval;
-                
-                if(saveInterval == 0){
-                    $.ajax({
-                      type: "GET",
-                      url: "request.php",
-                      data: "apiKey=" + apiKey + "&updateId=" + getTaskId + "&estimatedHours=" + getEstimatedHours + "&estimatedMinutes=" + getEstimatedMinutes + "&workedHours=" + newHours + "&workedMinutes=" + newMinutes + "&taskName=" + getTaskName,
-                      success: function( result ) {
-                         //console.log('auto saved');
-                      },
-                      error : function( msg, time ) {
-                         if(time === 'timeout'){
-                             $('#track-table').append("Timeout, no response from Server. We're sorry...");
-                         }
-                         $('#track-table').append(msg.responseText).fadeIn();
-                      }
-                    });
-                          
-                   // set interval again
-                   saveInterval = 1; 
-                }
-                
-            }
 
             $this.html(data.formatter(data.elapsed, data));
+        },
+
+        // update left row "Worked Time"
+        // send AJAX request
+        updateWorkedTime: function(){
+            var $this = $(this),
+                data = $this.data('stopwatch');
+            
+            // needed for entire worked time today
+            var locateAllTimer = $('.my_timer .time');
+            
+            var entireHours = 0;
+            var entireMinutes = 0;
+            
+            $.each(locateAllTimer, function(i, v){
+               entireHours += parseInt(splitTime($(v).html())[0]);
+               entireMinutes += parseInt(splitTime($(v).html())[1]);
+            });
+
+            // some time formatting
+            var workedTimeMillis = (entireHours*60*60*1000) + (entireMinutes*60*1000);
+            var sec = Math.floor(workedTimeMillis/1000);
+            var min = Math.floor(sec/60);
+            var hours = Math.floor(min/60);
+                min = min % 60;
+                hours = hours % 60;
+            
+            // render into bottom worked_time_today container
+            workedTimeToday.html(hours + ' hours ' + min + ' minutes');
+            
+            // locate elements
+            var locateClickedTd = $this.parent('td');
+            var locateProgress = locateClickedTd.prev();
+            var locateProgressWrapper = locateProgress.find('.progress');
+            var locateProgressBar = locateProgress.find('.bar');
+            var locateWorkedTimeWrapper = locateClickedTd.prev().prev('.worked_time');
+            var locateEstimatedTimeWrapper = locateClickedTd.siblings('.estimated_time');
+
+            // estimated & worked time
+            var getWorkedHours = parseInt(locateWorkedTimeWrapper.attr('data-worked-hours'));
+            var getWorkedMinutes = parseInt(locateWorkedTimeWrapper.attr('data-worked-minutes'));
+            var getEstimatedHours = parseInt(locateEstimatedTimeWrapper.attr('data-estimated-hours'));
+            var getEstimatedMinutes = parseInt(locateEstimatedTimeWrapper.attr('data-estimated-minutes'));
+
+            // task informations
+            var getTaskId = locateWorkedTimeWrapper.data('task-id');
+            var getTaskName = locateWorkedTimeWrapper.data('task-name');
+            
+            // api key
+            var apiKey = $.cookie('asana-api-key');
+            
+            // calculate new worked time
+            var newMinutes = Math.floor( data.elapsed / (1000 * 60) );
+            var rest = newMinutes-60;
+                newMinutes = (rest < 0 ) ? newMinutes : rest;
+            var newHours = (rest < 0 ) ? (getWorkedHours) : (getWorkedHours+1);
+
+            // calculate progress
+            var percent = (getEstimatedHours*60*1000 + getEstimatedMinutes * 1000) / 100;
+                
+                if(percent != 0){
+                    percent = (newHours*60*1000 + newMinutes * 1000) / percent;
+                } else {
+                    percent = 101;
+                }
+     
+                // change progress state
+                if(percent >= 80 && percent < 100){
+                    locateProgressWrapper.removeClass('progress-success', 'progress-danger');
+                    locateProgressWrapper.addClass('progress-warning');
+                } else if (percent >= 100){
+                    locateProgressWrapper.removeClass('progress-success', 'progress-warning');
+                    locateProgressWrapper.addClass('progress-danger');
+                }
+                
+                locateProgressBar.css('width', percent + '%');
+                
+            // render new worked time into left row "Worked Time"
+            locateWorkedTimeWrapper.find('.my_label').html(newHours + 'h ' + newMinutes + 'm');
+            locateWorkedTimeWrapper.attr('data-worked-hours', newHours);
+            locateWorkedTimeWrapper.attr('data-worked-minutes', newMinutes);
+            // save interval
+            --saveInterval;
+            
+            if(saveInterval == 0){
+                $.ajax({
+                  type: "GET",
+                  url: "request.php",
+                  data: "apiKey=" + apiKey + "&updateId=" + getTaskId + "&estimatedHours=" + getEstimatedHours + "&estimatedMinutes=" + getEstimatedMinutes + "&workedHours=" + newHours + "&workedMinutes=" + newMinutes + "&taskName=" + getTaskName,
+                  success: function( result ) {
+                     //console.log('auto saved');
+                  },
+                  error : function( msg, time ) {
+                     if(time === 'timeout'){
+                         $('#track-table').append("Timeout, no response from Server. We're sorry...");
+                     }
+                     $('#track-table').append(msg.responseText).fadeIn();
+                  }
+                });
+                      
+               // set interval again
+               saveInterval = 1; 
+            }
         },
 
         getTime: function() {
