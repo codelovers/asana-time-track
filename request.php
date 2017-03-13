@@ -54,6 +54,7 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              $taskState = $asana->getOneTask($task->id);
 
              $taskName = $value['taskName'];
+             $taskParent = (!empty($taskState['parent'])) ? ' < ' . $taskState['parent'] : '';
              $estimatedHours = (!empty($value['estimatedHours'])) ? $value['estimatedHours'].'h' : '0h';
              $estimatedMinutes = (!empty($value['estimatedMinutes'])) ? $value['estimatedMinutes'].'m' : '0m';
              $workedHours = (!empty($value['workedHours'])) ? $value['workedHours'].'h' : '0h';
@@ -70,13 +71,13 @@ if($asana->getResponseCode() == '200' && $result != '' ){
              
              $progressState = ($progressBarPercent < 80) ? 'progress-success' : (($progressBarPercent < 100 ) ? 'progress-warning' : 'progress-danger');
              
-             // task must be active and your own
-             if($taskState['completed'] || $taskState['assignee'] != $userId || $taskName == '') {
+             // task must be active, marked for today and your own
+             if($taskState['completed'] || $taskState['assignee_status'] != 'today' || $taskState['assignee'] != $userId || $taskName == '') {
                 continue;
              } else {
                 echo '<tr>'
                     .'<td>'. $taskState['projects']['name'] .'</td>'
-                    .'<td>'. $taskName  .'</td>'
+                    .'<td>'. $taskName . '<span style="color:#999;">' .  $taskParent .'</span></td>'
                     .'<td class="estimated_time" data-estimated-hours="'.$value['estimatedHours'].'" data-estimated-minutes="'.$value['estimatedMinutes'].'">'
                         . '<span class="my_label" rel="tooltip" title="click to edit">' . $estimatedHours .' '. $estimatedMinutes . '</span>'
                         . '<input class="date-picker-et" name="date-picker-et"/>'

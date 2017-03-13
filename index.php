@@ -73,7 +73,7 @@
                   </button>
                   <img class="ajax_img" src="img/ajax-loader.gif"/>
              </span>
-             <p class="hint_api_key">The Asana-Api-Key is only saved on your computer (Cookie).</p>
+             <p class="hint_api_key">Find you Asana-Api-Key <a href="http://app.asana.com/-/account_api" target="_blank">here</a>. The Asana-Api-Key is only saved on your computer (Cookie).</p>
             </div>
           </div>
           <button id="start-send" type="submit" class="btn">Submit</button>
